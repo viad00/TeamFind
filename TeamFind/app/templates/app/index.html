@@ -1,0 +1,34 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>TeamFind</h1>
+    <p class="lead">TeamFind is a service where you can find team or players.</p>
+    <p>
+        <a href="teams" class="btn btn-primary btn-large">Find team &raquo;</a>
+        <a href="players" class="btn btn-primary btn-large">Find player &raquo;</a>
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Register</h2>
+        <p>
+            You can also register as player or as team: just log in through SteamID.
+        </p>
+        <p><a class="btn btn-default" href="/login/steam">Log in through SteamID &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Registered Teams</h2>
+        <p>The Python Package Index is a repository of software for the Python programming language.</p>
+        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Registered Players</h2>
+        <p>You can easily publish to Microsoft Azure using Python Tools for Visual Studio. Find out how you can host your application using a free trial today.</p>
+        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+{% endblock %}
