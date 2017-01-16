@@ -87,19 +87,32 @@ WSGI_APPLICATION = 'TeamFind.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+if DEBUG:
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.sqlite3',
+           'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+       }
+   }
 
 # Update database configuration with $DATABASE_URL.
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-
+#redis
+from urllib.parse import urlparse
+redis_url = urlparse(os.environ.get('REDIS_URL'))
+CACHES = {
+    "default": {
+         "BACKEND": "redis_cache.RedisCache",
+         "LOCATION": "{0}:{1}".format(redis_url.hostname, 
+redis_url.port),
+         "OPTIONS": {
+             "PASSWORD": redis_url.password,
+             "DB": 0,
+         }
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 

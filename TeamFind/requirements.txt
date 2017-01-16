@@ -4,3 +4,4 @@ python-social-auth <=0.2.21
 gunicorn
 dj-database-url
 whitenoise
+django-redis-cache
