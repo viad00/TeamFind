@@ -41,8 +41,8 @@ def about(request):
         request,
         'app/about.html',
         {
-            'title':'About',
-            'message':'Your application description page.',
+            'title':'О сайте',
+            'message':'Здесь размещена некоторая история о данном сервисе.',
             'year':datetime.now().year,
         }
     )
