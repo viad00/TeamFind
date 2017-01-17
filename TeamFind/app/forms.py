@@ -1,10 +1,13 @@
 """
 Definition of forms.
 """
+from datetime import datetime
 
 from django import forms
+from django.db import models
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
 class BootstrapAuthenticationForm(AuthenticationForm):
     """Authentication form which uses boostrap CSS."""
@@ -18,4 +21,13 @@ class BootstrapAuthenticationForm(AuthenticationForm):
                                    'placeholder':'Password'}))
 
 class AddTeamForm(forms.Form):
-    team_name = forms.CharField(label='Название команды', max_length=100)
+    team_name = forms.CharField(label='Название команды', max_length=100, required=True)
+    description = forms.CharField(widget=forms.Textarea, label='Описание команды', max_length=2000, required=True)
+    team_url = forms.URLField(label='Ссылка', required=True)
+    founded = forms.DateField(label='Основана', required=True, initial=datetime.now())
+    min_rank = forms.ChoiceField(choices=settings.RANKS, label='Минимальный ранг', initial='UN')
+    max_rank = forms.ChoiceField(choices=settings.RANKS, label='Максимальный ранг', initial='GE')
+    is_mm = forms.BooleanField(label=settings.TYPES[settings.TYPES_SETTINGS['MM']][1], initial=True, required=False)
+    is_pu = forms.BooleanField(label=settings.TYPES[settings.TYPES_SETTINGS['PU']][1], initial=False, required=False)
+    is_le = forms.BooleanField(label=settings.TYPES[settings.TYPES_SETTINGS['LE']][1], initial=False, required=False)
+    is_ca = forms.BooleanField(label=settings.TYPES[settings.TYPES_SETTINGS['CA']][1], initial=True, required=False)

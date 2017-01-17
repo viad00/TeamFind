@@ -35,9 +35,7 @@ urlpatterns = [
             }
         },
         name='login'),
-    #url(r'^addteam',
-    #
-    #    ),
+    url(r'^addteam', app.views.addteam),
     url(r'^logout$',
         django.contrib.auth.views.logout,
         {

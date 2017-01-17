@@ -29,12 +29,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 SOCIAL_AUTH_STEAM_API_KEY = 'F1A61ADB142308996B15FC20432579A6'
-SOCIAL_AUTH_STEAM_EXTRA_DATA = ['player']
+#SOCIAL_AUTH_STEAM_EXTRA_DATA = ['player']
 AUTHENTICATION_BACKENDS = (
     'social.backends.steam.SteamOpenId',
 )
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/updateinfo'
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/updateinfo'
 
 # Application definition
 
@@ -48,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social.apps.django_app.default',
-    'multiselectfield',
+    'bootstrapform',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -135,9 +136,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -156,3 +157,34 @@ STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
 # https://warehouse.python.org/project/whitenoise/
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+#App constants
+RANKS = (
+        ('UN', 'Без ранга'),
+        ('S1', 'Сильвер 1'),
+        ('S2', 'Сильвер 2'),
+        ('S3', 'Сильвер 3'),
+        ('S4', 'Сильвер 4'),
+        ('S5', 'Сильвер Элита'),
+        ('S6', 'Сильвер Великий Магистр'),
+        ('N1', 'Золотая Звезда 1'),
+        ('N2', 'Золотая Звезда 2'),
+        ('N3', 'Золотая Звезда 3'),
+        ('N4', 'Золотая Звезда Магистр'),
+        ('M1', 'Магистр Хранитель 1'),
+        ('M2', 'Магистр Хранитель 2'),
+        ('M3', 'Магистр Хранитель Элита'),
+        ('M4', 'Заслуженный Магистр Хранитель'),
+        ('L1', 'Легендарный Беркут'),
+        ('L2', 'Легендарный Беркут Магистр'),
+        ('SM', 'Великий Магистр Высшего Ранга'),
+        ('GE', 'Всемирная Элита'),
+    )
+
+TYPES = (
+        ('MM', 'Соревновательный'),
+        ('PU', 'Competitive PUGs'),
+        ('LE', 'Соревновательная Лига'),
+        ('CA', 'Казуальный'),
+    )
+TYPES_SETTINGS = {'MM' : 0, 'PU' : 1, 'LE': 2, 'CA': 3}

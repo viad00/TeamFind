@@ -1,5 +1,5 @@
 django >=1.9, <2
-django-multiselectfield
+django-bootstrap-form
 python-social-auth <=0.2.21
 gunicorn
 dj-database-url
