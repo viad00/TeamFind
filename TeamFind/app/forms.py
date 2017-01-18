@@ -21,8 +21,8 @@ class BootstrapAuthenticationForm(AuthenticationForm):
                                    'placeholder':'Password'}))
 
 class AddTeamForm(forms.Form):
-    team_name = forms.CharField(label='Название команды', max_length=100, required=True)
-    description = forms.CharField(widget=forms.Textarea, label='Описание команды', max_length=2000, required=True)
+    team_name = forms.CharField(label='Название команды', max_length=20, required=True)
+    description = forms.CharField(widget=forms.Textarea, label='Описание команды', max_length=500, required=True)
     team_url = forms.URLField(label='Ссылка', required=True)
     founded = forms.DateField(label='Основана', required=True, initial=datetime.now())
     min_rank = forms.ChoiceField(choices=settings.RANKS, label='Минимальный ранг', initial='UN')

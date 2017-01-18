@@ -1,16 +1,19 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-    <p><h1>Команды</h1><button type="submit" class="btn btn-primary">Добавить команду</button></p>
     <div class="row">
-    {% for i in draw %}
-    <div class="col-md-4">
-        <h2>Команда {{ i }}</h2>
-        <p>
-            Длинное описание
-        </p>
-        <p><a class="btn btn-default" href="/">Подробнее &raquo;</a></p>
+        <div class="span9"><h1>Команды</h1></div>
+        <div class="span9"><button class="btn btn-default">Добавить команду</button></div>
     </div>
-    {% endfor %}
-</div>
+    <div class="row">
+            {% for i in teams %}
+                <div class="col-md-4">
+                    <h3>{{ i.name }}</h3>
+                    <p>
+                        {{ i.description }}
+                    </p>
+                    <p><a class="btn btn-default" href="{{ i.team_url }}">Подробнее &raquo;</a></p>
+                </div>
+            {% endfor %}
+    </div>
 {% endblock %}

@@ -1,14 +1,14 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} - TeamFind</title>
     {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="http://bootswatch.com/paper/bootstrap.min.css" />
     <!--<link rel="stylesheet" type="text/css" href="{ static 'app/content/bootstrap.min.css' %}" />-->
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
-    <!--<script src="{ static 'app/scripts/modernizr-2.6.2.js' %}"></script>-->
-    <link rel="stylesheet" type="text/css" href="http://bootswatch.com/paper/bootstrap.min.css" />
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
 </head>
 
 <body>
@@ -42,13 +42,13 @@
             <p>&copy; {% now "Y" %} - Not for production - viad00</p>
         </footer>
     </div>
-
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
     <!--<script src="{ static 'app/scripts/jquery-1.10.2.js' %}"></script>
     <!--<script src="{ static 'app/scripts/bootstrap.js' %}"></script>-->
-    <!--<script src="{ static 'app/scripts/respond.js' %}"></script>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.js"></script>
-{% block scripts %}{% endblock %}
+    <script src="{% static 'app/scripts/respond.js' %}"></script>
+{% endblock %}
 
 </body>
 </html>

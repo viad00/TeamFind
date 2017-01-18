@@ -60,12 +60,15 @@ def players(request):
 
 def teams(request):
     assert  isinstance(request, HttpRequest)
+    ass = 10
+    mod = models.Team.objects.filter(enabled=True).order_by('registered')[:ass]
     return render(
         request,
         'app/teams.html',
         {
             'title':'Teams',
-            'draw':range(10),
+            'teams':mod,
+            'count':models.Team.objects.count(),
         }
     )
 
@@ -106,4 +109,4 @@ def addteam(request):
     else:
         form = forms.AddTeamForm
 
-    return render(request, 'app/addteam.html', {'form': form})
+    return render(request, 'app/addteam.html', {'title':'Добавить команду', 'form': form})
