@@ -3,6 +3,7 @@
 {% block content %}
     <h1>Добавление команды</h1>
     <p>Здесь вы можете добавить команду</p>
+    <div class="jumbotron">
     {% if user.is_authenticated %}
         <form role="form" method="post">
             <legend>Добавить команду</legend>
@@ -23,4 +24,5 @@
     {% else %}
     <p>Вам необходимо зайти перед добавлением команды.</p>
     {% endif %}
+    </div>
 {% endblock %}

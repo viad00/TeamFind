@@ -65,6 +65,7 @@ def teams(request):
         'app/teams.html',
         {
             'title':'Teams',
+            'draw':range(10),
         }
     )
 
