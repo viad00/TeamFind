@@ -54,6 +54,10 @@
     <Folder Include="TeamFind\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\app\addteam.html" />
+    <Content Include="app\templates\app\players.html" />
+    <Content Include="app\templates\app\teams.html" />
+    <Content Include="app\templates\app\text.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />

@@ -86,24 +86,30 @@ def addteam(request):
         form = forms.AddTeamForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
+            text = form.cleaned_data['description']
+            text = list(map(len, text.split()))
+            text.sort(reverse=True)
+            if text[0] > 30:
+                return render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Какое-то слово(а) в вашем описании больше 30 символов.' })
+            else:
             # process the data in form.cleaned_data as required
-            tm = models.Team(
-                name=form.cleaned_data['team_name'],
-                owner=request.user,
-                founded=form.cleaned_data['founded'],
-                description=form.cleaned_data['description'],
-                team_url=form.cleaned_data['team_url'],
-                min_rank=form.cleaned_data['min_rank'],
-                max_rank=form.cleaned_data['max_rank'],
-                is_mm=form.cleaned_data['is_mm'],
-                is_pu=form.cleaned_data['is_pu'],
-                is_le=form.cleaned_data['is_le'],
-                is_ca=form.cleaned_data['is_ca'],
-            )
-            tm.save()
-            #return render(request, 'app/text.html', {'text': })
-            # redirect to a new URL:
-            return HttpResponseRedirect('/teams')
+                tm = models.Team(
+                    name=form.cleaned_data['team_name'],
+                    owner=request.user,
+                    founded=form.cleaned_data['founded'],
+                    description=form.cleaned_data['description'],
+                    team_url=form.cleaned_data['team_url'],
+                    min_rank=form.cleaned_data['min_rank'],
+                    max_rank=form.cleaned_data['max_rank'],
+                    is_mm=form.cleaned_data['is_mm'],
+                    is_pu=form.cleaned_data['is_pu'],
+                    is_le=form.cleaned_data['is_le'],
+                    is_ca=form.cleaned_data['is_ca'],
+                )
+                tm.save()
+                #return render(request, 'app/text.html', {'text': })
+                # redirect to a new URL:
+                return HttpResponseRedirect('/teams')
 
     # if a GET (or any other method) we'll create a blank form
     else:
