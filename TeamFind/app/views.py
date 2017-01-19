@@ -60,7 +60,7 @@ def players(request):
 
 def teams(request):
     assert  isinstance(request, HttpRequest)
-    ass = 10
+    ass = 20
     mod = models.Team.objects.filter(enabled=True).order_by('registered')[:ass]
     return render(
         request,

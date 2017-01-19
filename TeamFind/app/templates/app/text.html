@@ -1,12 +1,13 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-
-<div class="has-error">
-    <h1>Oops...</h1>
-    <p>
+<div class="jumbotron">
+<div class="field-validation-error">
+    <h2 class="text-danger">Oops...</h2>
+    <p class="lead">
         {{ text }}
     </p>
+</div>
 </div>
 
 {% endblock %}

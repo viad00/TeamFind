@@ -9,7 +9,7 @@ from django.conf import settings
 # Create your models here.
 
 class Team(models.Model):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=19)
     owner = models.ForeignKey(User, default=None)
     registered = models.DateTimeField(default=django.utils.timezone.now)
     founded = models.DateField(default=django.utils.timezone.now)

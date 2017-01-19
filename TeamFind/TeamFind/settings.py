@@ -25,8 +25,12 @@ SECRET_KEY = '2ce508b3-ae59-496b-8721-b456bc192698'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+if DEBUG:
+    ALLOWED_HOSTS = [
+        '*',
+    ]
+else:
+    ALLOWED_HOSTS = []
 
 SOCIAL_AUTH_STEAM_API_KEY = 'F1A61ADB142308996B15FC20432579A6'
 SOCIAL_AUTH_STEAM_EXTRA_DATA = ['player']
