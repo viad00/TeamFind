@@ -163,6 +163,7 @@ STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 #App constants
+#Ранги в игре
 RANKS = (
         ('UN', 'Без ранга'),
         ('S1', 'Сильвер 1'),
@@ -184,7 +185,7 @@ RANKS = (
         ('SM', 'Великий Магистр Высшего Ранга'),
         ('GE', 'Всемирная Элита'),
     )
-
+#Типы игр
 TYPES = (
         ('MM', 'Соревновательный'),
         ('PU', 'Competitive PUGs'),

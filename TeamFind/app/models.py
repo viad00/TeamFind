@@ -8,6 +8,7 @@ from django.conf import settings
 
 # Create your models here.
 
+#Описание модели команд
 class Team(models.Model):
     name = models.CharField(max_length=19)
     owner = models.ForeignKey(User, default=None)

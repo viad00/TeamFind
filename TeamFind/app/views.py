@@ -47,7 +47,7 @@ def about(request):
             #'message': request.user.social_auth.get(provider='steam').extra_data['player']['personaname'],
         }
     )
-
+#Рендер страницы с игроками TODO:Players
 def players(request):
     assert  isinstance(request, HttpRequest)
     return render(
@@ -57,7 +57,7 @@ def players(request):
             'title':'Players',
         }
     )
-
+#Рендер страницы с командами TODO:Полнотекстовый поиск, обработку кол-ва страниц
 def teams(request):
     assert  isinstance(request, HttpRequest)
     ass = 20
@@ -71,14 +71,14 @@ def teams(request):
             'count':models.Team.objects.count(),
         }
     )
-
+#Страница для обновления информации о клиенте
 def updateinfo(request):
     assert isinstance(request, HttpRequest)
     if (request.user.get_username() != request.user.social_auth.get(provider='steam').extra_data['player']['steamid']):
         request.user.username = request.user.social_auth.get(provider='steam').extra_data['player']['steamid']
         request.user.save()
     return redirect('/')
-
+#Форма для добавления игрока
 def addteam(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -90,7 +90,8 @@ def addteam(request):
             text = list(map(len, text.split()))
             text.sort(reverse=True)
             if text[0] > 30:
-                return render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Какое-то слово(а) в вашем описании больше 30 символов.' })
+                return render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Какое-то слово(а) в вашем описании'
+                                                                                   ' больше 30 символов.' })
             else:
             # process the data in form.cleaned_data as required
                 tm = models.Team(

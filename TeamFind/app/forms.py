@@ -20,6 +20,7 @@ class BootstrapAuthenticationForm(AuthenticationForm):
                                    'class': 'form-control',
                                    'placeholder':'Password'}))
 
+#Описание формы команд
 class AddTeamForm(forms.Form):
     team_name = forms.CharField(label='Название команды', max_length=19, required=True)
     description = forms.CharField(widget=forms.Textarea, label='Описание команды', max_length=500, required=True)

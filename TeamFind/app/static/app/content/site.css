@@ -40,7 +40,7 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
-
+/* Стиль для плашек с информацией */
 .alert-info {
     background-color: #0c8aff;
 }
