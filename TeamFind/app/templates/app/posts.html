@@ -1,0 +1,29 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+    <h1>Мои команды</h1>
+    {% if user.is_authenticated %}
+        <table class="table table-hover">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Название</th>
+            <th>Ссылка</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in teams %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.name }}</td>
+                <td><a href="https://steamcommunity.com/gid/{{ i.team_url }}">{{ i.team_url }}</a></td>
+                <td><a href="/delete/?id={{ i.id }}"><button class="btn-danger">Удалить</button></a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    {% else %}
+    <p>Вам необходимо зайти для просмотра.</p>
+    {% endif %}
+{% endblock %}

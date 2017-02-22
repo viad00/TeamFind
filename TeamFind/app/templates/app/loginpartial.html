@@ -3,6 +3,7 @@
     {% csrf_token %}
     <ul class="nav navbar-nav navbar-right">
         <li><span class="navbar-brand">{{ user.social_auth.get.extra_data.player.personaname }}</span></li>
+        <li><a href="/myposts">Мои объявления</a></li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
     </ul>
 
@@ -11,7 +12,7 @@
 {% else %}
 
 <ul class="nav navbar-nav navbar-right">
-    <li><a href="/login/steam">Войти</a></li>
+    <li><a href="/login/steam">Войти через SteamID</a></li>
 </ul>
 
 {% endif %}

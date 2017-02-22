@@ -23,6 +23,8 @@ urlpatterns = [
     url(r'^players', app.views.players, name='players'),
     url(r'^teams', app.views.teams, name='teams'),
     url(r'^updateinfo', app.views.updateinfo, name='updateinfo'),
+    url(r'^myposts', app.views.myposts, name='myposts'),
+    url(r'^delete', app.views.delete, name='delete'),
     url(r'^login/$',
         django.contrib.auth.views.login,
         {
