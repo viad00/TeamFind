@@ -30,7 +30,9 @@ if DEBUG:
         '*',
     ]
 else:
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = [
+        '*',
+    ]
 
 SOCIAL_AUTH_STEAM_API_KEY = 'F1A61ADB142308996B15FC20432579A6'
 SOCIAL_AUTH_STEAM_EXTRA_DATA = ['player']
@@ -92,32 +94,31 @@ WSGI_APPLICATION = 'TeamFind.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-if DEBUG:
-   DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.sqlite3',
-           'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-       }
+DATABASES = {
+    'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
    }
+}
 
 # Update database configuration with $DATABASE_URL.
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+#import dj_database_url
+#db_from_env = dj_database_url.config(conn_max_age=500)
+#DATABASES['default'].update(db_from_env)
 #redis
-from urllib.parse import urlparse
-redis_url = urlparse(os.environ.get('REDIS_URL'))
-CACHES = {
-    "default": {
-         "BACKEND": "redis_cache.RedisCache",
-         "LOCATION": "{0}:{1}".format(redis_url.hostname, 
-redis_url.port),
-         "OPTIONS": {
-             "PASSWORD": redis_url.password,
-             "DB": 0,
-         }
-    }
-}
+#from urllib.parse import urlparse
+#redis_url = urlparse(os.environ.get('REDIS_URL'))
+#CACHES = {
+#    "default": {
+#         "BACKEND": "redis_cache.RedisCache",
+#         "LOCATION": "{0}:{1}".format(redis_url.hostname,
+#redis_url.port),
+#         "OPTIONS": {
+#             "PASSWORD": redis_url.password,
+#             "DB": 0,
+#         }
+#    }
+#}
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -160,7 +161,7 @@ STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 #App constants
 #Ранги в игре
@@ -193,3 +194,7 @@ TYPES = (
         ('CA', 'Казуальный'),
     )
 TYPES_SETTINGS = {'MM' : 0, 'PU' : 1, 'LE': 2, 'CA': 3}
+
+ADMINS = [
+    '76561198055294907',
+]

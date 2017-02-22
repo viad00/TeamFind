@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect
 from urllib.parse import urlparse
 import requests
 import xml.etree.ElementTree as ET
+from django.conf import settings
 
 
 def home(request):
@@ -57,7 +58,7 @@ def players(request):
             'title':'Players',
         }
     )
-#Рендер страницы с командами TODO:Полнотекстовый поиск
+#Рендер страницы с командами TODO:Полнотекстовый поиск, сортировка выборки
 def teams(request):
     #assert  isinstance(request, HttpRequest)
     try:
@@ -118,6 +119,10 @@ def addteam(request):
                 except Exception:
                     bad = True
 
+            if request.user.social_auth.get(provider='steam').extra_data['player']['steamid'] in settings.ADMINS:
+                meme = 0
+            else:
+                meme = models.Team.objects.filter(owner=request.user).count()
 
             if text[0] > 30:
                 return render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Какое-то слово(а) в вашем описании'
@@ -125,7 +130,7 @@ def addteam(request):
             elif bad:
                 return  render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Проверьте формат ссылки на группу в'
                                                                                     ' Steam. Например: http://steamcommunity.com/groups/potatogroup'})
-            elif models.Team.objects.filter(owner=request.user).count() >= 2:
+            elif meme >= 2:
                 return  render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Не более 2-х команд на аккаунт'})
             else:
             # process the data in form.cleaned_data as required
