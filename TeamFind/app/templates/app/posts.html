@@ -13,12 +13,20 @@
         </tr>
     </thead>
     <tbody>
+    {% csrf_token %}
         {% for i in teams %}
             <tr>
                 <td>{{ i.id }}</td>
                 <td>{{ i.name }}</td>
                 <td><a href="https://steamcommunity.com/gid/{{ i.team_url }}">{{ i.team_url }}</a></td>
-                <td><a href="/delete/?id={{ i.id }}"><button class="btn-danger">Удалить</button></a></td>
+                <td><a href="/delete/?id={{ i.id }}"><button class="btn btn-danger">Удалить</button></a></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td>0</td>
+                <td>У вас ещё нет команд</td>
+                <td></td>
+                <td></td>
             </tr>
         {% endfor %}
     </tbody>

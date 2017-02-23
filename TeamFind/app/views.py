@@ -16,11 +16,13 @@ from django.conf import settings
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
+    cc = models.Team.objects.count()
     return render(
         request,
         'app/index.html',
         {
             'title':'Home Page',
+            'count':cc,
         }
     )
 
@@ -58,9 +60,9 @@ def players(request):
             'title':'Players',
         }
     )
-#Рендер страницы с командами TODO:Полнотекстовый поиск, сортировка выборки
+#Рендер страницы с командами TODO:Полнотекстовый поиск
 def teams(request):
-    #assert  isinstance(request, HttpRequest)
+    assert isinstance(request, HttpRequest)
     try:
         n = int(request.GET['n'])
         e = int(request.GET['e'])
@@ -68,6 +70,34 @@ def teams(request):
         n = 0
         e = 20
     mod = models.Team.objects.filter(enabled=True)
+    try:
+        if request.COOKIES['show_mm'] == '0':
+            mod = mod.filter(is_mm=False)
+        elif request.COOKIES['show_mm'] == '1':
+            mod = mod.filter(is_mm=True)
+    except Exception:
+        mm = True
+    try:
+        if request.COOKIES['show_pu'] == '0':
+            mod = mod.filter(is_pu=False)
+        elif request.COOKIES['show_pu'] == '1':
+            mod = mod.filter(is_pu=True)
+    except Exception:
+        mm = True
+    try:
+        if request.COOKIES['show_le'] == '0':
+            mod = mod.filter(is_le=False)
+        elif request.COOKIES['show_le'] == '1':
+            mod = mod.filter(is_le=True)
+    except Exception:
+        mm = True
+    try:
+        if request.COOKIES['show_ca'] == '0':
+            mod = mod.filter(is_ca=False)
+        elif request.COOKIES['show_ca'] == '1':
+            mod = mod.filter(is_ca=True)
+    except Exception:
+        mm = True
     co = mod.count()
     mod = mod.order_by('registered')[n:e]
     return render(
@@ -84,6 +114,11 @@ def teams(request):
             'ne':co-20,
             'nn':n+20,
             'en':e+20,
+            'is_mm':settings.TYPES[settings.TYPES_SETTINGS['MM']][1],
+            'is_pu':settings.TYPES[settings.TYPES_SETTINGS['PU']][1],
+            'is_le':settings.TYPES[settings.TYPES_SETTINGS['LE']][1],
+            'is_ca':settings.TYPES[settings.TYPES_SETTINGS['CA']][1],
+            'ranks':settings.RANKS,
         }
     )
 #Страница для обновления информации о клиенте
@@ -114,12 +149,12 @@ def addteam(request):
                     ans = ET.fromstring(ans.content)
                     steamid = int(ans.find('groupID64').text)
                     ans = ans.find('groupDetails')
-                    imgurl = ans.find('avatarMedium').text
+                    imgurl = ans.find('avatarFull').text
                     bad = False
                 except Exception:
                     bad = True
 
-            if request.user.social_auth.get(provider='steam').extra_data['player']['steamid'] in settings.ADMINS:
+            if request.user.username in settings.ADMINS:
                 meme = 0
             else:
                 meme = models.Team.objects.filter(owner=request.user).count()

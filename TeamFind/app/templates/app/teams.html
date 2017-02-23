@@ -1,8 +1,127 @@
 {% extends "app/layout.html" %}
+{% block scripts %}
+<script type="text/javascript">
+ function show_1() {
+     document.getElementById('sho').className='show';
+     document.getElementById('test').className='hide';
+     if (document.cookie.search('show_mm=3')!=-1) {
+         document.getElementById('id_mm').selectedIndex = 0
+     }
+     if (document.cookie.search('show_pu=3')!=-1) {
+         document.getElementById('id_pu').selectedIndex = 0
+     }
+     if (document.cookie.search('show_le=3')!=-1) {
+         document.getElementById('id_le').selectedIndex = 0
+     }
+     if (document.cookie.search('show_ca=3')!=-1) {
+         document.getElementById('id_ca').selectedIndex = 0
+     }
+
+     if (document.cookie.search('show_mm=0')!=-1) {
+         document.getElementById('id_mm').selectedIndex = 1
+     }
+     if (document.cookie.search('show_pu=0')!=-1) {
+         document.getElementById('id_pu').selectedIndex = 1
+     }
+     if (document.cookie.search('show_le=0')!=-1) {
+         document.getElementById('id_le').selectedIndex = 1
+     }
+     if (document.cookie.search('show_ca=0')!=-1) {
+         document.getElementById('id_ca').selectedIndex = 1
+     }
+
+     if (document.cookie.search('show_mm=1')!=-1) {
+         document.getElementById('id_mm').selectedIndex = 2
+     }
+     if (document.cookie.search('show_pu=1')!=-1) {
+         document.getElementById('id_pu').selectedIndex = 2
+     }
+     if (document.cookie.search('show_le=1')!=-1) {
+         document.getElementById('id_le').selectedIndex = 2
+     }
+     if (document.cookie.search('show_ca=1')!=-1) {
+         document.getElementById('id_ca').selectedIndex = 2
+     }
+ }
+ function hide_1() {
+     document.getElementById('sho').className='hide';
+     document.getElementById('test').className='show';
+ }
+ function prim() {
+     var bb = document.getElementById('id_mm').options[document.getElementById('id_mm').selectedIndex].value;
+     if (bb=='3') { document.cookie = 'show_mm=3';}
+     if (bb=='1') { document.cookie = 'show_mm=1';}
+     if (bb=='0') { document.cookie = 'show_mm=0';}
+     bb = document.getElementById('id_pu').options[document.getElementById('id_pu').selectedIndex].value;
+     if (bb=='3') { document.cookie = 'show_pu=3';}
+     if (bb=='1') { document.cookie = 'show_pu=1';}
+     if (bb=='0') { document.cookie = 'show_pu=0';}
+     bb = document.getElementById('id_le').options[document.getElementById('id_le').selectedIndex].value;
+     if (bb=='3') { document.cookie = 'show_le=3';}
+     if (bb=='1') { document.cookie = 'show_le=1';}
+     if (bb=='0') { document.cookie = 'show_le=0';}
+     bb = document.getElementById('id_ca').options[document.getElementById('id_ca').selectedIndex].value;
+     if (bb=='3') { document.cookie = 'show_ca=3';}
+     if (bb=='1') { document.cookie = 'show_ca=1';}
+     if (bb=='0') { document.cookie = 'show_ca=0';}
+ }
+ function sbros() {
+     document.cookie = 'show_mm=3';
+     document.cookie = 'show_pu=3';
+     document.cookie = 'show_le=3';
+     document.cookie = 'show_ca=3';
+ }
+</script>
+{% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="span9"><h1>Команды</h1></div>
+        <div id="test"><a class="btn btn-default" onclick="show_1()">Параметры</a></div>
+        <div id="sho" class="hide">
+            <div class="form-group">
+                    <label class="control-label " for="id_mm">{{ is_mm }}</label>
+                    <div class=" ">
+                    <select class=" form-control" id="id_mm" name="mm">
+                        <option value="3" selected="selected">Без разницы</option>
+                        <option value="0">Нет</option>
+                        <option value="1">Да</option>
+                    </select>
+                    </div>
+            </div>
+            <div class="form-group">
+                    <label class="control-label " for="id_pu">{{ is_pu }}</label>
+                    <div class=" ">
+                    <select class=" form-control" id="id_pu" name="pu">
+                        <option value="3" selected="selected">Без разницы</option>
+                        <option value="0">Нет</option>
+                        <option value="1">Да</option>
+                    </select>
+                    </div>
+            </div>
+            <div class="form-group">
+                    <label class="control-label " for="id_le">{{ is_le }}</label>
+                    <div class=" ">
+                    <select class=" form-control" id="id_le" name="le">
+                        <option value="3" selected="selected">Без разницы</option>
+                        <option value="0">Нет</option>
+                        <option value="1">Да</option>
+                    </select>
+                    </div>
+            </div>
+            <div class="form-group">
+                    <label class="control-label " for="id_ca">{{ is_ca }}</label>
+                    <div class=" ">
+                    <select class=" form-control" id="id_ca" name="ca">
+                        <option value="3" selected="selected">Без разницы</option>
+                        <option value="0">Нет</option>
+                        <option value="1">Да</option>
+                    </select>
+                    </div>
+            </div>
+            <a class="btn btn-danger" onclick="hide_1()">Закрыть</a> <a class="btn btn-info" onclick="prim()" href="">Применить</a> <a class="btn btn-default" onclick="sbros()" href="">Сброс</a>
+        </div>
+        <p> </p>
         <div class="span9"><a class="btn btn-default" href="/addteam">Добавить команду</a></div>
         <p> </p>
     </div>
@@ -10,12 +129,24 @@
             {% for i in teams %}
                 <div class="col-md-4">
                 <div class="alert alert-info" align="center">
-                    <img class="img-circle" alt="{{ i.name }} image" src="{{ i.image }}" width="90" height="90">
+                    <img class="img-rounded" alt="{{ i.name }} image" src="{{ i.image }}" width="90" height="90">
                     <p>&#0160;</p>
                     <h4>{{ i.name }}</h4>
                     <p>
                         {{ i.description }}
                     </p>
+                    <p>Основанна: {{ i.founded }}</p>
+                    {% for foo in ranks %}
+                        {% if i.min_rank == foo.0 %}
+                            <p>От: {{ foo.1 }}</p>
+                        {% elif i.max_rank == foo.0 %}
+                            <p>До: {{ foo.1 }}</p>
+                        {% endif %}
+                    {% endfor %}
+                    <p>{% if i.is_mm %}&#9989;{% else %}&#10006;{% endif %}{{ is_mm }}</p>
+                    <p>{% if i.is_pu %}&#9989;{% else %}&#10006;{% endif %}{{ is_pu }}</p>
+                    <p>{% if i.is_le %}&#9989;{% else %}&#10006;{% endif %}{{ is_le }}</p>
+                    <p>{% if i.is_ca %}&#9989;{% else %}&#10006;{% endif %}{{ is_ca }}</p>
                     <p><a class="btn btn-default" href="https://steamcommunity.com/gid/{{ i.team_url }}">Подробнее &raquo;</a></p>
                 </div></div>
             {% endfor %}
