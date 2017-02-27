@@ -63,6 +63,20 @@ def players(request):
 #Рендер страницы с командами TODO:Полнотекстовый поиск
 def teams(request):
     assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/teams.html',
+        {
+            'title': 'Teams',
+            'is_mm': settings.TYPES[settings.TYPES_SETTINGS['MM']][1],
+            'is_pu': settings.TYPES[settings.TYPES_SETTINGS['PU']][1],
+            'is_le': settings.TYPES[settings.TYPES_SETTINGS['LE']][1],
+            'is_ca': settings.TYPES[settings.TYPES_SETTINGS['CA']][1],
+        }
+    )
+
+def teamd(request):
+    assert isinstance(request, HttpRequest)
     try:
         n = int(request.GET['n'])
         e = int(request.GET['e'])
@@ -98,22 +112,29 @@ def teams(request):
             mod = mod.filter(is_ca=True)
     except Exception:
         mm = True
-    co = mod.count()
+    try:
+        for rank in settings.RANKS:
+            if request.COOKIES['ex_'+rank[0]] == '1':
+                mod = mod.exclude(min_rank=rank[0])
+                mod = mod.exclude(max_rank=rank[0])
+    except Exception:
+        mm = True
+    #co = mod.count()
     mod = mod.order_by('registered')[n:e]
     return render(
         request,
-        'app/teams.html',
+        'app/teamsnum.html',
         {
-            'title':'Teams',
+            #'title':'Teams',
             'teams':mod,
-            'count':co,
-            'n':n,
-            'e':e,
-            'nb':n-20,
-            'eb':e-20,
-            'ne':co-20,
-            'nn':n+20,
-            'en':e+20,
+            #'count':co,
+            #'n':n,
+            #'e':e,
+            #'nb':n-20,
+            #'eb':e-20,
+            #'ne':co-20,
+            #'nn':n+20,
+            #'en':e+20,
             'is_mm':settings.TYPES[settings.TYPES_SETTINGS['MM']][1],
             'is_pu':settings.TYPES[settings.TYPES_SETTINGS['PU']][1],
             'is_le':settings.TYPES[settings.TYPES_SETTINGS['LE']][1],

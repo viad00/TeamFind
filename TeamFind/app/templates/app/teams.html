@@ -1,9 +1,51 @@
 {% extends "app/layout.html" %}
 {% block scripts %}
 <script type="text/javascript">
+var n = 0;
+var step = 10;
+var e = n+step;
+$(document).ready(function(){
+    ajax(n, e);
+    n += step;
+    e += step;
+});
+
+$(window).scroll(function(){
+     if ($(window).scrollTop() == $(document).height() - $(window).height() && !$("#pls_stp").length){
+        ajax(n,e);
+        n += step;
+        e += step;
+     }
+});
+
+function ajax(n, e) {
+    $.ajax({
+        type: "GET",
+        url: "/teamd/?n=" + n + "&e=" + e,
+        success: function (data) {
+            $("#nain").append(data);
+        }
+        }
+    );
+}
+var ranks = ['UN', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'N1', 'N2', 'N3', 'N4', 'M1', 'M2', 'M3', 'M4', 'L1', 'L2', 'SM', 'GE'];
+function cookiegen(min_rank, max_rank) {
+    var ex = 0;
+    for (var i = 0; i < ranks.length; i++) {
+        if (ranks[i] == min_rank) { ex = 1; document.cookie = 'min_rank='+i; }
+        if (ex) { document.cookie = 'ex_'+ranks[i]+'=0'; }
+        else { document.cookie = 'ex_'+ranks[i]+'=1'; }
+        if (ranks[i] == max_rank) { ex = 0; document.cookie = 'max_rank='+i; }
+    }
+}
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
  function show_1() {
-     document.getElementById('sho').className='show';
-     document.getElementById('test').className='hide';
+     $("#test").fadeOut();
+     //document.getElementById('test').className='hide';
      if (document.cookie.search('show_mm=3')!=-1) {
          document.getElementById('id_mm').selectedIndex = 0
      }
@@ -42,12 +84,19 @@
      if (document.cookie.search('show_ca=1')!=-1) {
          document.getElementById('id_ca').selectedIndex = 2
      }
+     document.getElementById('id_min_rank').selectedIndex = getCookie('min_rank');
+     document.getElementById('id_max_rank').selectedIndex = getCookie('max_rank');
+     //document.getElementById('sho').className='show';
+     $("#sho").slideDown();
  }
  function hide_1() {
-     document.getElementById('sho').className='hide';
-     document.getElementById('test').className='show';
+     //document.getElementById('sho').className='hide';
+     //document.getElementById('test').className='show';
+     $("#sho").slideUp();
+     $("#test").fadeIn();
  }
  function prim() {
+     $("#sho").slideUp();
      var bb = document.getElementById('id_mm').options[document.getElementById('id_mm').selectedIndex].value;
      if (bb=='3') { document.cookie = 'show_mm=3';}
      if (bb=='1') { document.cookie = 'show_mm=1';}
@@ -64,12 +113,20 @@
      if (bb=='3') { document.cookie = 'show_ca=3';}
      if (bb=='1') { document.cookie = 'show_ca=1';}
      if (bb=='0') { document.cookie = 'show_ca=0';}
+     cookiegen(document.getElementById('id_min_rank').options[document.getElementById('id_min_rank').selectedIndex].value,
+     document.getElementById('id_max_rank').options[document.getElementById('id_max_rank').selectedIndex].value);
+     $("#test").fadeIn();
  }
  function sbros() {
      document.cookie = 'show_mm=3';
      document.cookie = 'show_pu=3';
      document.cookie = 'show_le=3';
      document.cookie = 'show_ca=3';
+     cookiegen('UN', 'GE');
+     //document.getElementById('sho').className='hide';
+     //document.getElementById('test').className='show';
+     $("#sho").slideUp();
+     $("#test").fadeIn();
  }
 </script>
 {% endblock %}
@@ -78,7 +135,7 @@
     <div class="row">
         <div class="span9"><h1>Команды</h1></div>
         <div id="test"><a class="btn btn-default" onclick="show_1()">Параметры</a></div>
-        <div id="sho" class="hide">
+        <div id="sho" style="display: none;">
             <div class="form-group">
                     <label class="control-label " for="id_mm">{{ is_mm }}</label>
                     <div class=" ">
@@ -119,37 +176,63 @@
                     </select>
                     </div>
             </div>
+            <div class="form-group">
+                    <label class="control-label " for="id_min_rank">Минимальный ранг</label>
+                    <div class=" ">
+                    <select class=" form-control" id="id_min_rank" name="min_rank" required="">
+                        <option value="UN" selected="selected">Без ранга</option>
+                        <option value="S1">Сильвер 1</option>
+                        <option value="S2">Сильвер 2</option>
+                        <option value="S3">Сильвер 3</option>
+                        <option value="S4">Сильвер 4</option>
+                        <option value="S5">Сильвер Элита</option>
+                        <option value="S6">Сильвер Великий Магистр</option>
+                        <option value="N1">Золотая Звезда 1</option>
+                        <option value="N2">Золотая Звезда 2</option>
+                        <option value="N3">Золотая Звезда 3</option>
+                        <option value="N4">Золотая Звезда Магистр</option>
+                        <option value="M1">Магистр Хранитель 1</option>
+                        <option value="M2">Магистр Хранитель 2</option>
+                        <option value="M3">Магистр Хранитель Элита</option>
+                        <option value="M4">Заслуженный Магистр Хранитель</option>
+                        <option value="L1">Легендарный Беркут</option>
+                        <option value="L2">Легендарный Беркут Магистр</option>
+                        <option value="SM">Великий Магистр Высшего Ранга</option>
+                        <option value="GE">Всемирная Элита</option>
+                    </select>
+                    </div>
+            </div>
+            <div class="form-group">
+                    <label class="control-label " for="id_max_rank">Максимальный ранг</label>
+                    <div class=" ">
+                    <select class=" form-control" id="id_max_rank" name="max_rank" required="">
+                        <option value="UN">Без ранга</option>
+                        <option value="S1">Сильвер 1</option>
+                        <option value="S2">Сильвер 2</option>
+                        <option value="S3">Сильвер 3</option>
+                        <option value="S4">Сильвер 4</option>
+                        <option value="S5">Сильвер Элита</option>
+                        <option value="S6">Сильвер Великий Магистр</option>
+                        <option value="N1">Золотая Звезда 1</option>
+                        <option value="N2">Золотая Звезда 2</option>
+                        <option value="N3">Золотая Звезда 3</option>
+                        <option value="N4">Золотая Звезда Магистр</option>
+                        <option value="M1">Магистр Хранитель 1</option>
+                        <option value="M2">Магистр Хранитель 2</option>
+                        <option value="M3">Магистр Хранитель Элита</option>
+                        <option value="M4">Заслуженный Магистр Хранитель</option>
+                        <option value="L1">Легендарный Беркут</option>
+                        <option value="L2">Легендарный Беркут Магистр</option>
+                        <option value="SM">Великий Магистр Высшего Ранга</option>
+                        <option value="GE" selected="selected">Всемирная Элита</option>
+                    </select>
+                    </div>
+            </div>
             <a class="btn btn-danger" onclick="hide_1()">Закрыть</a> <a class="btn btn-info" onclick="prim()" href="">Применить</a> <a class="btn btn-default" onclick="sbros()" href="">Сброс</a>
         </div>
         <p> </p>
         <div class="span9"><a class="btn btn-default" href="/addteam">Добавить команду</a></div>
         <p> </p>
     </div>
-    <div class="row">
-            {% for i in teams %}
-                <div class="col-md-4">
-                <div class="alert alert-info" align="center">
-                    <img class="img-rounded" alt="{{ i.name }} image" src="{{ i.image }}" width="90" height="90">
-                    <p>&#0160;</p>
-                    <h4>{{ i.name }}</h4>
-                    <p>
-                        {{ i.description }}
-                    </p>
-                    <p>Основанна: {{ i.founded }}</p>
-                    {% for foo in ranks %}
-                        {% if i.min_rank == foo.0 %}
-                            <p>От: {{ foo.1 }}</p>
-                        {% elif i.max_rank == foo.0 %}
-                            <p>До: {{ foo.1 }}</p>
-                        {% endif %}
-                    {% endfor %}
-                    <p>{% if i.is_mm %}&#9989;{% else %}&#10006;{% endif %}{{ is_mm }}</p>
-                    <p>{% if i.is_pu %}&#9989;{% else %}&#10006;{% endif %}{{ is_pu }}</p>
-                    <p>{% if i.is_le %}&#9989;{% else %}&#10006;{% endif %}{{ is_le }}</p>
-                    <p>{% if i.is_ca %}&#9989;{% else %}&#10006;{% endif %}{{ is_ca }}</p>
-                    <p><a class="btn btn-default" href="https://steamcommunity.com/gid/{{ i.team_url }}">Подробнее &raquo;</a></p>
-                </div></div>
-            {% endfor %}
-    </div>
-    <div align="center"><h2><a href="/teams"><<</a> <a href="/teams/?n={% if nb < 0 %}0{% else %}{{ nb }}{% endif %}&e={% if eb <= 0 %}20{% else %}{{ eb }}{% endif %}"><</a> {{ n }} - {{ e }} <a href="/teams/?n={{ nn }}&e={{ en }}">></a> <a href="/teams/?n={% if ne < 0 %}0{% else %}{{ ne }}{% endif %}&e={{ count }}">>></a></h2></div>
+    <div class="row" id="nain"></div>
 {% endblock %}
