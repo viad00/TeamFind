@@ -1,14 +1,16 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-    <h1>Мои команды</h1>
+    <h1>Мои объявления</h1>
+    <p>Внимание! Созданные объявления удаляются через 30 дней. Вы можете продлить объявление нажав на кнопку продлить.</p>
     {% if user.is_authenticated %}
         <table class="table table-hover">
     <thead>
         <tr>
-            <th>id</th>
+            <th>ID</th>
             <th>Название</th>
             <th>Ссылка</th>
+            <th>Обновлён</th>
             <th>Действия</th>
         </tr>
     </thead>
@@ -19,12 +21,17 @@
                 <td>{{ i.id }}</td>
                 <td>{{ i.name }}</td>
                 <td><a href="https://steamcommunity.com/gid/{{ i.team_url }}">{{ i.team_url }}</a></td>
-                <td><a href="/delete/?id={{ i.id }}"><button class="btn btn-danger">Удалить</button></a></td>
+                <td>{{ i.registered }}</td>
+                <td>
+                    <a href="/delete/?id={{ i.id }}&type=team"><button class="btn btn-danger">Удалить</button></a>
+                    <a href="/update/?id={{ i.id }}&type=team"><button class="btn btn-info">Продлить</button></a>
+                </td>
             </tr>
         {% empty %}
             <tr>
                 <td>0</td>
                 <td>У вас ещё нет команд</td>
+                <td></td>
                 <td></td>
                 <td></td>
             </tr>

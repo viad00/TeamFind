@@ -1,7 +1,9 @@
 """
 Definition of views.
 """
+import calendar
 
+import django
 from app import forms
 from app import models
 from django.http import HttpRequest
@@ -11,6 +13,7 @@ from urllib.parse import urlparse
 import requests
 import xml.etree.ElementTree as ET
 from django.conf import settings
+from django.utils.datetime_safe import datetime
 
 
 def home(request):
@@ -224,9 +227,34 @@ def myposts(request):
 def delete(request):
     try:
         id = int(request.GET['id'])
-        mod = models.Team.objects.filter(id=id, owner=request.user)
+        type = request.GET['type']
+        if type == 'team':
+            mod = models.Team.objects.filter(id=id, owner=request.user)
+        elif type == 'player': #TODO: Player model
+            mod = models.Team.objects.filter(id=id, owner=request.user)
+        else:
+            return render(request, 'app/text.html', {'title': 'Ошибка',
+                                                     'text': 'Такой команды, игрока не существует либо она не принадлежит пользователю'})
         for i in mod:
             i.delete()
         return redirect('/myposts')
     except Exception:
-        return render(request, 'app/text.html', {'title':'Ошибка', 'text':'Такой команды не существует либо она не принадлежит пользователю.'})
+        return render(request, 'app/text.html', {'title':'Ошибка', 'text':'Такой команды, игрока не существует либо она не принадлежит пользователю.'})
+def update(request):
+    try:
+        id = int(request.GET['id'])
+        type = request.GET['type']
+        if type == 'team':
+            mod = models.Team.objects.filter(id=id, owner=request.user)
+        elif type == 'player': #TODO: Player model
+            mod = models.Team.objects.filter(id=id, owner=request.user)
+        else:
+            return render(request, 'app/text.html', {'title': 'Ошибка',
+                                                     'text': 'Такой команды, игрока не существует либо она не принадлежит пользователю'})
+        for i in mod:
+            if calendar.timegm(i.registered.timetuple()) - calendar.timegm(datetime.now().timetuple()) > 518400:
+                i.registered = datetime.now()
+                i.save()
+        return redirect('/myposts')
+    except Exception:
+        return render(request, 'app/text.html', {'title':'Ошибка', 'text':'Такой команды, игрока не существует либо она не принадлежит пользователю.'})
