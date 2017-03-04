@@ -44,7 +44,9 @@ function getCookie(name) {
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
  function show_1() {
-     $("#test").fadeOut();
+     //$("#test").fadeOut();
+     $("#test").hide();
+     $("#untest").show();
      //document.getElementById('test').className='hide';
      if (document.cookie.search('show_mm=3')!=-1) {
          document.getElementById('id_mm').selectedIndex = 0
@@ -93,7 +95,8 @@ function getCookie(name) {
      //document.getElementById('sho').className='hide';
      //document.getElementById('test').className='show';
      $("#sho").slideUp();
-     $("#test").fadeIn();
+     $("#untest").hide();
+     $("#test").show();
  }
  function prim() {
      $("#sho").slideUp();
@@ -115,7 +118,8 @@ function getCookie(name) {
      if (bb=='0') { document.cookie = 'show_ca=0';}
      cookiegen(document.getElementById('id_min_rank').options[document.getElementById('id_min_rank').selectedIndex].value,
      document.getElementById('id_max_rank').options[document.getElementById('id_max_rank').selectedIndex].value);
-     $("#test").fadeIn();
+     $("#untest").hide();
+     $("#test").show();
  }
  function sbros() {
      document.cookie = 'show_mm=3';
@@ -126,7 +130,8 @@ function getCookie(name) {
      //document.getElementById('sho').className='hide';
      //document.getElementById('test').className='show';
      $("#sho").slideUp();
-     $("#test").fadeIn();
+     $("#untest").hide();
+     $("#test").show();
  }
 </script>
 {% endblock %}
@@ -135,6 +140,7 @@ function getCookie(name) {
     <div class="row">
         <div class="span9"><h1>Команды</h1></div>
         <div id="test"><a class="btn btn-default" onclick="show_1()">Параметры</a></div>
+        <div id="untest" style="display: none;"><a class="btn btn-danger" onclick="hide_1()">Закрыть</a></div>
         <div id="sho" style="display: none;">
             <div class="form-group">
                     <label class="control-label " for="id_mm">{{ is_mm }}</label>

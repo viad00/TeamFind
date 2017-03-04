@@ -86,6 +86,9 @@ def teamd(request):
     except Exception:
         n = 0
         e = 20
+    if e-n > 50 or e-n < 3:
+        n=0
+        e=20
     mod = models.Team.objects.filter(enabled=True)
     try:
         if request.COOKIES['show_mm'] == '0':

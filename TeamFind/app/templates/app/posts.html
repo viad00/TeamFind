@@ -1,5 +1,20 @@
 {% extends "app/layout.html" %}
-
+{% block scripts %}
+<script type="text/javascript">
+function show_desc(text, id) {
+    $('#show_'+id).hide();
+    $('#hide_'+id).show();
+    $('#desc_'+id).text(text);
+    $('#desctd_'+id).show();
+}
+function hide_desc(id) {
+    $('#hide_'+id).hide();
+    $('#desctd_'+id).hide();
+    $('#show_'+id).show();
+    $('#desc_'+id).text('');
+}
+</script>
+{% endblock %}
 {% block content %}
     <h1>Мои объявления</h1>
     <p>Внимание! Созданные объявления удаляются через 30 дней. Вы можете продлить объявление нажав на кнопку продлить.</p>
@@ -25,8 +40,11 @@
                 <td>
                     <a href="/delete/?id={{ i.id }}&type=team"><button class="btn btn-danger">Удалить</button></a>
                     <a href="/update/?id={{ i.id }}&type=team"><button class="btn btn-info">Продлить</button></a>
+                    <button id="show_{{ i.id }}" class="btn btn-default" onclick="show_desc('{{ i.description }}', {{ i.id }})">Описание</button>
+                    <button id="hide_{{ i.id }}" class="btn btn-default" onclick="hide_desc({{ i.id }})" style="display: none;">Скрыть</button>
                 </td>
             </tr>
+            <tr id="desctd_{{ i.id }}" style="display: none;"><td colspan="5" id="desc_{{ i.id }}"></td></tr>
         {% empty %}
             <tr>
                 <td>0</td>
