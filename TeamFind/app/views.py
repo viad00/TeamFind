@@ -7,6 +7,7 @@ import django
 from app import forms
 from app import models
 from django.http import HttpRequest
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from urllib.parse import urlparse
@@ -255,9 +256,26 @@ def update(request):
             return render(request, 'app/text.html', {'title': 'Ошибка',
                                                      'text': 'Такой команды, игрока не существует либо она не принадлежит пользователю'})
         for i in mod:
-            if calendar.timegm(i.registered.timetuple()) - calendar.timegm(datetime.now().timetuple()) > 518400:
+            if calendar.timegm(datetime.now().timetuple()) - calendar.timegm(i.registered.timetuple()) > 604800: # 7 days
                 i.registered = datetime.now()
                 i.save()
         return redirect('/myposts')
     except Exception:
         return render(request, 'app/text.html', {'title':'Ошибка', 'text':'Такой команды, игрока не существует либо она не принадлежит пользователю.'})
+def crondis(request):
+    try:
+        kk = request.GET['kek']
+    except Exception:
+        return HttpResponse(
+            '<html>\n<head><title>404 Not Found</title></head>\n<body bgcolor="white">\n<center><h1>404 Not Found</h1></center>\n<hr><center>nginx/1.10.0 (Ubuntu)</center>\n</body>\n</html>')
+
+    if kk == settings.CRON_KEY:
+        tdel = datetime.utcfromtimestamp(calendar.timegm(datetime.now().timetuple()) - 2629743) # 1 month
+        mod = models.Team.objects.exclude(registered__gte=tdel)#TODO: Player model
+        count = 0
+        for i in mod:
+            i.delete()
+            count += 1
+        return HttpResponse("Deleted "+str(count)+' entries.')
+    else:
+        return HttpResponse('<html>\n<head><title>404 Not Found</title></head>\n<body bgcolor="white">\n<center><h1>404 Not Found</h1></center>\n<hr><center>nginx/1.10.0 (Ubuntu)</center>\n</body>\n</html>')

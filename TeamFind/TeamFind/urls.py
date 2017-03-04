@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^myposts', app.views.myposts, name='myposts'),
     url(r'^delete', app.views.delete, name='delete'),
     url(r'^update', app.views.update, name='update'),
+    url(r'^crondis', app.views.crondis, name='crondis'),
     url(r'^login/$',
         django.contrib.auth.views.login,
         {
