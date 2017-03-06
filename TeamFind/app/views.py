@@ -25,7 +25,7 @@ def home(request):
         request,
         'app/index.html',
         {
-            'title':'Home Page',
+            'title':'Главная',
             'count':cc,
         }
     )
@@ -127,7 +127,8 @@ def teamd(request):
     except Exception:
         mm = True
     #co = mod.count()
-    mod = mod.order_by('registered')[n:e]
+    mod = mod.order_by('-registered')[n:e]
+    
     return render(
         request,
         'app/teamsnum.html',

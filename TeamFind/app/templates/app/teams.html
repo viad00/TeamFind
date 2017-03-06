@@ -11,12 +11,27 @@ $(document).ready(function(){
 });
 
 $(window).scroll(function(){
-     if ($(window).scrollTop() == $(document).height() - $(window).height() && !$("#pls_stp").length){
+    if (($(window).scrollTop() == $(document).height() - $(window).height() | $(window).scrollTop() == $(document).height() - $(window).height() - 1) && !$("#pls_stp").length) {
         ajax(n,e);
         n += step;
         e += step;
      }
+     if ($(this).scrollTop() > 50) {
+         $('#back-to-top').fadeIn();
+     } else {
+         $('#back-to-top').fadeOut();
+     }
 });
+
+$('#back-to-top').click(function () {
+    $('#back-to-top').tooltip('hide');
+    $('body,html').animate({
+        scrollTop: 0
+    }, 800);
+    return false;
+});
+
+$('#back-to-top').tooltip('show');
 
 function ajax(n, e) {
     $.ajax({
@@ -241,4 +256,5 @@ function getCookie(name) {
         <p> </p>
     </div>
     <div class="row" id="nain"></div>
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Нажмите чтобы перейти к началу страницы" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
 {% endblock %}

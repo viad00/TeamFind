@@ -29,6 +29,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="app\admin.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\forms.py" />
     <Compile Include="app\models.py" />
     <Compile Include="app\tests.py" />
@@ -57,6 +60,7 @@
     <Content Include="app\templates\app\addteam.html" />
     <Content Include="app\templates\app\players.html" />
     <Content Include="app\templates\app\teams.html" />
+    <Content Include="app\templates\app\teamsnum.html" />
     <Content Include="app\templates\app\text.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
