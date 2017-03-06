@@ -8,6 +8,7 @@ from django.db import models
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+from captcha.fields import ReCaptchaField
 
 class BootstrapAuthenticationForm(AuthenticationForm):
     """Authentication form which uses boostrap CSS."""
@@ -32,3 +33,4 @@ class AddTeamForm(forms.Form):
     is_pu = forms.BooleanField(label=settings.TYPES[settings.TYPES_SETTINGS['PU']][1], initial=False, required=False)
     is_le = forms.BooleanField(label=settings.TYPES[settings.TYPES_SETTINGS['LE']][1], initial=False, required=False)
     is_ca = forms.BooleanField(label=settings.TYPES[settings.TYPES_SETTINGS['CA']][1], initial=True, required=False)
+    captcha = ReCaptchaField()

@@ -36,6 +36,7 @@ else:
     ]
 
 SOCIAL_AUTH_STEAM_API_KEY = 'F1A61ADB142308996B15FC20432579A6'
+NOCAPTCHA = True
 SOCIAL_AUTH_STEAM_EXTRA_DATA = ['player']
 AUTHENTICATION_BACKENDS = (
     'social.backends.steam.SteamOpenId',
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social.apps.django_app.default',
     'bootstrapform',
+    'captcha',
 ]
 
 MIDDLEWARE_CLASSES = [
