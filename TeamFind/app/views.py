@@ -76,6 +76,7 @@ def teams(request):
             'is_pu': settings.TYPES[settings.TYPES_SETTINGS['PU']][1],
             'is_le': settings.TYPES[settings.TYPES_SETTINGS['LE']][1],
             'is_ca': settings.TYPES[settings.TYPES_SETTINGS['CA']][1],
+            'gamers':settings.GAMERS,
         }
     )
 
@@ -272,11 +273,7 @@ def crondis(request):
 
     if kk == settings.CRON_KEY:
         tdel = datetime.utcfromtimestamp(calendar.timegm(datetime.now().timetuple()) - 2629743) # 1 month
-        mod = models.Team.objects.exclude(registered__gte=tdel)#TODO: Player model
-        count = 0
-        for i in mod:
-            i.delete()
-            count += 1
-        return HttpResponse("Deleted "+str(count)+' entries.')
+        mod = models.Team.objects.exclude(registered__gte=tdel).delete()#TODO: Player model
+        return HttpResponse("Deleted "+str(mod[0])+' entries.')
     else:
         return HttpResponse('<html>\n<head><title>404 Not Found</title></head>\n<body bgcolor="white">\n<center><h1>404 Not Found</h1></center>\n<hr><center>nginx/1.10.0 (Ubuntu)</center>\n</body>\n</html>')

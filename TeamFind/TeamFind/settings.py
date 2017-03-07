@@ -196,6 +196,15 @@ TYPES = (
         ('LE', 'Соревновательная Лига'),
         ('CA', 'Казуальный'),
     )
+#Типы игроков
+GAMERS = {
+    'AWP':'Авапер',
+    'LUK':'Lurker',
+    'RIF':'Rifler',
+    'IGL':'IGL',
+    'SUP':'Supporter',
+    'FRG':'Fragger',
+    }
 TYPES_SETTINGS = {'MM' : 0, 'PU' : 1, 'LE': 2, 'CA': 3}
 
 ADMINS = [

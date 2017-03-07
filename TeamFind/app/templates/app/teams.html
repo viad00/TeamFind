@@ -59,10 +59,8 @@ function getCookie(name) {
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
  function show_1() {
-     //$("#test").fadeOut();
      $("#test").hide();
      $("#untest").show();
-     //document.getElementById('test').className='hide';
      if (document.cookie.search('show_mm=3')!=-1) {
          document.getElementById('id_mm').selectedIndex = 0
      }
@@ -103,12 +101,9 @@ function getCookie(name) {
      }
      document.getElementById('id_min_rank').selectedIndex = getCookie('min_rank');
      document.getElementById('id_max_rank').selectedIndex = getCookie('max_rank');
-     //document.getElementById('sho').className='show';
      $("#sho").slideDown();
  }
  function hide_1() {
-     //document.getElementById('sho').className='hide';
-     //document.getElementById('test').className='show';
      $("#sho").slideUp();
      $("#untest").hide();
      $("#test").show();
@@ -142,8 +137,6 @@ function getCookie(name) {
      document.cookie = 'show_le=3';
      document.cookie = 'show_ca=3';
      cookiegen('UN', 'GE');
-     //document.getElementById('sho').className='hide';
-     //document.getElementById('test').className='show';
      $("#sho").slideUp();
      $("#untest").hide();
      $("#test").show();
@@ -196,6 +189,36 @@ function getCookie(name) {
                         <option value="1">Да</option>
                     </select>
                     </div>
+            </div>
+            <div class="checkbox">
+                    <label >
+                        <input checked="checked" id="need_awp" type="checkbox" /> <span>{{gamers.AWP}}</span>
+                    </label>
+            </div>
+            <div class="checkbox">
+                    <label >
+                        <input checked="checked" id="need_luk" type="checkbox" /> <span>{{gamers.LUK}}</span>
+                    </label>
+            </div>
+            <div class="checkbox">
+                    <label >
+                        <input checked="checked" id="need_rif" type="checkbox" /> <span>{{gamers.RIF}}</span>
+                    </label>
+            </div>
+            <div class="checkbox">
+                    <label >
+                        <input checked="checked" id="need_igl" type="checkbox" /> <span>{{gamers.IGL}}</span>
+                    </label>
+            </div>
+            <div class="checkbox">
+                    <label >
+                        <input checked="checked" id="need_sup" type="checkbox" /> <span>{{gamers.SUP}}</span>
+                    </label>
+            </div>
+            <div class="checkbox">
+                    <label >
+                        <input checked="checked" id="need_frg" type="checkbox" /> <span>{{gamers.FRG}}</span>
+                    </label>
             </div>
             <div class="form-group">
                     <label class="control-label " for="id_min_rank">Минимальный ранг</label>
