@@ -127,23 +127,43 @@ def teamd(request):
                 mod = mod.exclude(max_rank=rank[0])
     except Exception:
         mm = True
-    #co = mod.count()
+    try:
+        if request.COOKIES['need_awp'] == 'true':
+            mod = mod.filter(need_awp=True)
+    except Exception:
+        mm = True
+    try:
+        if request.COOKIES['need_luk'] == 'true':
+            mod = mod.filter(need_luk=True)
+    except Exception:
+        mm = True
+    try:
+        if request.COOKIES['need_rif'] == 'true':
+            mod = mod.filter(need_rif=True)
+    except Exception:
+        mm = True
+    try:
+        if request.COOKIES['need_igl'] == 'true':
+            mod = mod.filter(need_igl=True)
+    except Exception:
+        mm = True
+    try:
+        if request.COOKIES['need_sup'] == 'true':
+            mod = mod.filter(need_sup=True)
+    except Exception:
+        mm = True
+    try:
+        if request.COOKIES['need_frg'] == 'true':
+            mod = mod.filter(need_frg=True)
+    except Exception:
+        mm = True
     mod = mod.order_by('-registered')[n:e]
     
     return render(
         request,
         'app/teamsnum.html',
         {
-            #'title':'Teams',
             'teams':mod,
-            #'count':co,
-            #'n':n,
-            #'e':e,
-            #'nb':n-20,
-            #'eb':e-20,
-            #'ne':co-20,
-            #'nn':n+20,
-            #'en':e+20,
             'is_mm':settings.TYPES[settings.TYPES_SETTINGS['MM']][1],
             'is_pu':settings.TYPES[settings.TYPES_SETTINGS['PU']][1],
             'is_le':settings.TYPES[settings.TYPES_SETTINGS['LE']][1],
@@ -167,6 +187,14 @@ def addteam(request):
         # check whether it's valid:
         if form.is_valid():
             text = form.cleaned_data['description']
+            text += ' ' + form.cleaned_data['team_name']
+            badword = False
+            words = []
+            for word in models.BadWords.objects.all():
+                if word.word in text:
+                    badword = True
+                    words.append(word.word)
+            text.replace(form.cleaned_data['team_name'], '')
             text = list(map(len, text.split()))
             text.sort(reverse=True)
             url = urlparse(form.cleaned_data['team_url'])
@@ -195,6 +223,9 @@ def addteam(request):
             elif bad:
                 return  render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Проверьте формат ссылки на группу в'
                                                                                     ' Steam. Например: http://steamcommunity.com/groups/potatogroup'})
+            elif badword:
+                return render(request, 'app/text.html', { 'title':'Ошибка', 'text':'В названии или тексте содержатся недопустимые слова ' + str(words) })
+
             elif meme >= 2:
                 return  render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Не более 2-х команд на аккаунт'})
             else:
@@ -212,6 +243,12 @@ def addteam(request):
                     is_pu=form.cleaned_data['is_pu'],
                     is_le=form.cleaned_data['is_le'],
                     is_ca=form.cleaned_data['is_ca'],
+                    need_awp=form.cleaned_data['need_awp'],
+                    need_rif=form.cleaned_data['need_rif'],
+                    need_sup=form.cleaned_data['need_sup'],
+                    need_luk=form.cleaned_data['need_luk'],
+                    need_frg=form.cleaned_data['need_frg'],
+                    need_igl=form.cleaned_data['need_igl'],
                 )
                 tm.save()
                 #return render(request, 'app/text.html', {'text': })

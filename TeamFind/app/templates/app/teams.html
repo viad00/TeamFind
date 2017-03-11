@@ -58,6 +58,10 @@ function getCookie(name) {
   var parts = value.split("; " + name + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
+    function parseBool(str) {
+        if (str == "false") return false;
+        if (str == "true") return true;
+    }
  function show_1() {
      $("#test").hide();
      $("#untest").show();
@@ -99,8 +103,16 @@ function getCookie(name) {
      if (document.cookie.search('show_ca=1')!=-1) {
          document.getElementById('id_ca').selectedIndex = 2
      }
-     document.getElementById('id_min_rank').selectedIndex = getCookie('min_rank');
-     document.getElementById('id_max_rank').selectedIndex = getCookie('max_rank');
+     
+     if (getCookie('need_awp') != undefined) $("#need_awp")[0].checked = parseBool(getCookie('need_awp'));
+     if (getCookie('need_luk') != undefined) $("#need_luk")[0].checked = parseBool(getCookie('need_luk'));
+     if (getCookie('need_rif') != undefined) $("#need_rif")[0].checked = parseBool(getCookie('need_rif'));
+     if (getCookie('need_igl') != undefined) $("#need_igl")[0].checked = parseBool(getCookie('need_igl'));
+     if (getCookie('need_sup') != undefined) $("#need_sup")[0].checked = parseBool(getCookie('need_sup'));
+     if (getCookie('need_frg') != undefined) $("#need_frg")[0].checked = parseBool(getCookie('need_frg'));
+
+     if (getCookie('id_min_rank') != undefined) document.getElementById('id_min_rank').selectedIndex = getCookie('min_rank');
+     if (getCookie('id_max_rank') != undefined) document.getElementById('id_max_rank').selectedIndex = getCookie('max_rank');
      $("#sho").slideDown();
  }
  function hide_1() {
@@ -128,6 +140,12 @@ function getCookie(name) {
      if (bb=='0') { document.cookie = 'show_ca=0';}
      cookiegen(document.getElementById('id_min_rank').options[document.getElementById('id_min_rank').selectedIndex].value,
      document.getElementById('id_max_rank').options[document.getElementById('id_max_rank').selectedIndex].value);
+     document.cookie = 'need_awp=' + $("#need_awp")[0].checked;
+    document.cookie = 'need_luk=' + $("#need_luk")[0].checked;
+    document.cookie = 'need_rif=' + $("#need_rif")[0].checked;
+    document.cookie = 'need_igl=' + $("#need_igl")[0].checked;
+    document.cookie = 'need_sup=' + $("#need_sup")[0].checked;
+    document.cookie = 'need_frg=' + $("#need_frg")[0].checked;
      $("#untest").hide();
      $("#test").show();
  }
@@ -136,6 +154,12 @@ function getCookie(name) {
      document.cookie = 'show_pu=3';
      document.cookie = 'show_le=3';
      document.cookie = 'show_ca=3';
+     document.cookie = 'need_awp=false';
+    document.cookie = 'need_luk=false';
+    document.cookie = 'need_rif=false';
+    document.cookie = 'need_igl=false';
+    document.cookie = 'need_sup=false';
+    document.cookie = 'need_frg=false';
      cookiegen('UN', 'GE');
      $("#sho").slideUp();
      $("#untest").hide();
@@ -192,32 +216,32 @@ function getCookie(name) {
             </div>
             <div class="checkbox">
                     <label >
-                        <input checked="checked" id="need_awp" type="checkbox" /> <span>{{gamers.AWP}}</span>
+                        <input id="need_awp" type="checkbox" /> <span>{{gamers.AWP}}</span>
                     </label>
             </div>
             <div class="checkbox">
                     <label >
-                        <input checked="checked" id="need_luk" type="checkbox" /> <span>{{gamers.LUK}}</span>
+                        <input id="need_luk" type="checkbox" /> <span>{{gamers.LUK}}</span>
                     </label>
             </div>
             <div class="checkbox">
                     <label >
-                        <input checked="checked" id="need_rif" type="checkbox" /> <span>{{gamers.RIF}}</span>
+                        <input id="need_rif" type="checkbox" /> <span>{{gamers.RIF}}</span>
                     </label>
             </div>
             <div class="checkbox">
                     <label >
-                        <input checked="checked" id="need_igl" type="checkbox" /> <span>{{gamers.IGL}}</span>
+                        <input id="need_igl" type="checkbox" /> <span>{{gamers.IGL}}</span>
                     </label>
             </div>
             <div class="checkbox">
                     <label >
-                        <input checked="checked" id="need_sup" type="checkbox" /> <span>{{gamers.SUP}}</span>
+                        <input id="need_sup" type="checkbox" /> <span>{{gamers.SUP}}</span>
                     </label>
             </div>
             <div class="checkbox">
                     <label >
-                        <input checked="checked" id="need_frg" type="checkbox" /> <span>{{gamers.FRG}}</span>
+                        <input id="need_frg" type="checkbox" /> <span>{{gamers.FRG}}</span>
                     </label>
             </div>
             <div class="form-group">

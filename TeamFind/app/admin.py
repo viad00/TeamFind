@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import Team
+from app.models import Team, BadWords
 
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('name', 'adm_url', 'description')
@@ -8,4 +8,9 @@ class TeamAdmin(admin.ModelAdmin):
     adm_url.allow_tags = True
     pass
 
+class BadWordsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'word',)
+    pass
+
 admin.site.register(Team, TeamAdmin)
+admin.site.register(BadWords, BadWordsAdmin)

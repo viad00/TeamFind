@@ -30,3 +30,6 @@ class Team(models.Model):
     need_sup = models.BooleanField(default=True)
     need_frg = models.BooleanField(default=True)
     enabled = models.BooleanField(default=True)
+
+class BadWords(models.Model):
+    word = models.CharField(max_length=100)
