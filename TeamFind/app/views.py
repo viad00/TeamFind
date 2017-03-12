@@ -186,15 +186,17 @@ def addteam(request):
         form = forms.AddTeamForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            text = form.cleaned_data['description']
-            text += ' ' + form.cleaned_data['team_name']
+            text = form.cleaned_data['description'].lower()
+            name = form.cleaned_data['team_name'].lower()
             badword = False
             words = []
             for word in models.BadWords.objects.all():
                 if word.word in text:
                     badword = True
                     words.append(word.word)
-            text.replace(form.cleaned_data['team_name'], '')
+                elif word.word in name:
+                    badword = True
+                    words.append(word.word)
             text = list(map(len, text.split()))
             text.sort(reverse=True)
             url = urlparse(form.cleaned_data['team_url'])

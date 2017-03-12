@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Definition of forms.
 """
@@ -33,10 +34,10 @@ class AddTeamForm(forms.Form):
     is_pu = forms.BooleanField(label=settings.TYPES[settings.TYPES_SETTINGS['PU']][1], initial=False, required=False)
     is_le = forms.BooleanField(label=settings.TYPES[settings.TYPES_SETTINGS['LE']][1], initial=False, required=False)
     is_ca = forms.BooleanField(label=settings.TYPES[settings.TYPES_SETTINGS['CA']][1], initial=True, required=False)
-    need_awp = forms.BooleanField(label=settings.GAMERS['AWP'], initial=True, required=False)
-    need_luk = forms.BooleanField(label=settings.GAMERS['LUK'], initial=True, required=False)
-    need_rif = forms.BooleanField(label=settings.GAMERS['RIF'], initial=True, required=False)
-    need_igl = forms.BooleanField(label=settings.GAMERS['IGL'], initial=True, required=False)
-    need_sup = forms.BooleanField(label=settings.GAMERS['SUP'], initial=True, required=False)
-    need_frg = forms.BooleanField(label=settings.GAMERS['FRG'], initial=True, required=False)
+    need_awp = forms.BooleanField(label='Требуется ' + settings.GAMERS['AWP'], initial=True, required=False)
+    need_luk = forms.BooleanField(label='Требуется ' + settings.GAMERS['LUK'], initial=True, required=False)
+    need_rif = forms.BooleanField(label='Требуется ' + settings.GAMERS['RIF'], initial=True, required=False)
+    need_igl = forms.BooleanField(label='Требуется ' + settings.GAMERS['IGL'], initial=True, required=False)
+    need_sup = forms.BooleanField(label='Требуется ' + settings.GAMERS['SUP'], initial=True, required=False)
+    need_frg = forms.BooleanField(label='Требуется ' + settings.GAMERS['FRG'], initial=True, required=False)
     captcha = ReCaptchaField()
