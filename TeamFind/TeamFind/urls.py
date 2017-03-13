@@ -3,6 +3,8 @@ Definition of urls for TeamFind.
 """
 
 from datetime import datetime
+
+from django.conf import settings
 from django.conf.urls import url, include
 import django.contrib.auth.views
 from django.shortcuts import redirect
@@ -55,3 +57,8 @@ urlpatterns = [
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     ]
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

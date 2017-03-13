@@ -10,13 +10,19 @@ from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from urllib.parse import urlparse
 import requests
 import xml.etree.ElementTree as ET
 from django.conf import settings
 from django.utils.datetime_safe import datetime
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_cookie
 
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
+@cache_page(CACHE_TTL)
+@vary_on_cookie
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
@@ -30,6 +36,7 @@ def home(request):
         }
     )
 
+@cache_page(CACHE_TTL)
 def contact(request):
     """Renders the contact page."""
     assert isinstance(request, HttpRequest)
@@ -42,6 +49,7 @@ def contact(request):
         }
     )
 
+@cache_page(CACHE_TTL)
 def about(request):
     """Renders the about page."""
     assert isinstance(request, HttpRequest)
@@ -54,6 +62,8 @@ def about(request):
             #'message': request.user.social_auth.get(provider='steam').extra_data['player']['personaname'],
         }
     )
+
+@cache_page(CACHE_TTL)
 #Рендер страницы с игроками TODO:Players
 def players(request):
     assert  isinstance(request, HttpRequest)
@@ -65,6 +75,7 @@ def players(request):
         }
     )
 #Рендер страницы с командами TODO:Полнотекстовый поиск
+@cache_page(CACHE_TTL)
 def teams(request):
     assert isinstance(request, HttpRequest)
     return render(
@@ -80,6 +91,8 @@ def teams(request):
         }
     )
 
+@cache_page(CACHE_TTL)
+@vary_on_cookie
 def teamd(request):
     assert isinstance(request, HttpRequest)
     try:
@@ -204,7 +217,7 @@ def addteam(request):
             steamid = 0
             if url.netloc == 'steamcommunity.com' and url.path[:8] == '/groups/' and url.path.rfind('/') == 7:
                 try:
-                    che = url.geturl() + '/memberslistxml/?xml=1'
+                    che = 'https://steamcommunity.com' + url.path + '/memberslistxml/?xml=1'
                     ans = requests.get(che)
                     ans = ET.fromstring(ans.content)
                     steamid = int(ans.find('groupID64').text)

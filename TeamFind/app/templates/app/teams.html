@@ -111,8 +111,8 @@ function getCookie(name) {
      if (getCookie('need_sup') != undefined) $("#need_sup")[0].checked = parseBool(getCookie('need_sup'));
      if (getCookie('need_frg') != undefined) $("#need_frg")[0].checked = parseBool(getCookie('need_frg'));
 
-     if (getCookie('id_min_rank') != undefined) document.getElementById('id_min_rank').selectedIndex = getCookie('min_rank');
-     if (getCookie('id_max_rank') != undefined) document.getElementById('id_max_rank').selectedIndex = getCookie('max_rank');
+     if (getCookie('min_rank') != undefined) document.getElementById('id_min_rank').selectedIndex = getCookie('min_rank');
+     if (getCookie('max_rank') != undefined) document.getElementById('id_max_rank').selectedIndex = getCookie('max_rank');
      $("#sho").slideDown();
  }
  function hide_1() {

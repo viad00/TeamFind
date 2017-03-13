@@ -1,12 +1,14 @@
+{% load cache %}
 {% if user.is_authenticated %}
 <form id="logoutForm" action="/logout" method="post" class="navbar-right">
     {% csrf_token %}
+    {% cache 600 usersidebar %}
     <ul class="nav navbar-nav navbar-right">
         <li><span class="navbar-brand">{{ user.social_auth.get.extra_data.player.personaname }}</span></li>
         <li><a href="/myposts">Мои объявления</a></li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
     </ul>
-
+    {% endcache %}
 </form>
 
 {% else %}

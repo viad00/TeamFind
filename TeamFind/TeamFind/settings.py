@@ -26,15 +26,10 @@ CRON_KEY = 'fctgiuhbvhgiucfsdriovdtfgyjjkgf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-if DEBUG:
-    ALLOWED_HOSTS = [
-        '*',
-    ]
-else:
-    ALLOWED_HOSTS = [
-        '*',
-    ]
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 SOCIAL_AUTH_STEAM_API_KEY = 'F1A61ADB142308996B15FC20432579A6'
 NOCAPTCHA = True
 SOCIAL_AUTH_STEAM_EXTRA_DATA = ['player']
@@ -56,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'social.apps.django_app.default',
     'bootstrapform',
     'captcha',
@@ -70,6 +66,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'TeamFind.urls'
@@ -104,24 +101,6 @@ DATABASES = {
    }
 }
 
-# Update database configuration with $DATABASE_URL.
-#import dj_database_url
-#db_from_env = dj_database_url.config(conn_max_age=500)
-#DATABASES['default'].update(db_from_env)
-#redis
-#from urllib.parse import urlparse
-#redis_url = urlparse(os.environ.get('REDIS_URL'))
-#CACHES = {
-#    "default": {
-#         "BACKEND": "redis_cache.RedisCache",
-#         "LOCATION": "{0}:{1}".format(redis_url.hostname,
-#redis_url.port),
-#         "OPTIONS": {
-#             "PASSWORD": redis_url.password,
-#             "DB": 0,
-#         }
-#    }
-#}
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -198,15 +177,27 @@ TYPES = (
     )
 #Типы игроков
 GAMERS = {
-    'AWP':'Авапер',
-    'LUK':'Lurker',
-    'RIF':'Rifler',
-    'IGL':'IGL',
-    'SUP':'Supporter',
-    'FRG':'Fragger',
+    'AWP':'авапер',
+    'LUK':'люрк',
+    'RIF':'рифлер',
+    'IGL':'капитан',
+    'SUP':'саппорт',
+    'FRG':'фрагер',
     }
 TYPES_SETTINGS = {'MM' : 0, 'PU' : 1, 'LE': 2, 'CA': 3}
 
 ADMINS = [
     '76561198055294907',
 ]
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/0",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
+        "KEY_PREFIX": "teamfind"
+    }
+}
+CACHE_TTL = 0
