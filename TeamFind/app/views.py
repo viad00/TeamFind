@@ -76,6 +76,7 @@ def players(request):
     )
 #Рендер страницы с командами TODO:Полнотекстовый поиск
 @cache_page(CACHE_TTL)
+@vary_on_cookie
 def teams(request):
     assert isinstance(request, HttpRequest)
     return render(

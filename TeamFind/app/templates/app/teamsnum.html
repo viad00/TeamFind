@@ -15,17 +15,17 @@
                             <p>До: {{ foo.1 }}</p>
                         {% endif %}
                     {% endfor %}
-                    <p>{% if i.is_mm %}&#9989;{% else %}&#10006;{% endif %}{{ is_mm }}</p>
-                    <p>{% if i.is_pu %}&#9989;{% else %}&#10006;{% endif %}{{ is_pu }}</p>
-                    <p>{% if i.is_le %}&#9989;{% else %}&#10006;{% endif %}{{ is_le }}</p>
-                    <p>{% if i.is_ca %}&#9989;{% else %}&#10006;{% endif %}{{ is_ca }}</p>
+                    <p>{% if i.is_mm %}<div style="color: green">&#9989;{% else %}<div style="color: darkred">&#10006;{% endif %}{{ is_mm }}</div></p>
+                    <p>{% if i.is_pu %}<div style="color: green">&#9989;{% else %}<div style="color: darkred">&#10006;{% endif %}{{ is_pu }}</div></p>
+                    <p>{% if i.is_le %}<div style="color: green">&#9989;{% else %}<div style="color: darkred">&#10006;{% endif %}{{ is_le }}</div></p>
+                    <p>{% if i.is_ca %}<div style="color: green">&#9989;{% else %}<div style="color: darkred">&#10006;{% endif %}{{ is_ca }}</div></p>
                     <p>
-                        {% if i.need_awp %}<img title="sniper" alt="need awp" src="/static/app/content/awp.png" width="32" height="32" />{%endif%}
-                        {% if i.need_luk %}<img title="lurker" alt="need lurker" src="/static/app/content/luk.png" width="32" height="32" />{%endif%}
-                        {% if i.need_rif %}<img title="rifler" alt="need rifler" src="/static/app/content/rif.png" width="32" height="32" />{%endif%}
-                        {% if i.need_sup %}<img title="support" alt="need support" src="/static/app/content/sup.png" width="32" height="32" />{%endif%}
-                        {% if i.need_igl %}<img title="igl" alt="need igl" src="/static/app/content/igl.png" width="32" height="32" />{%endif%}
-                        {% if i.need_frg %}<img title="fragger" alt="need fragger" src="/static/app/content/frg.png" width="32" height="32" />{%endif%}
+                        {% if i.need_awp %}<img title="авапер" alt="need awp" src="/static/app/content/awp.png" width="32" height="32" />{%endif%}
+                        {% if i.need_luk %}<img title="люрк" alt="need lurker" src="/static/app/content/luk.png" width="32" height="32" />{%endif%}
+                        {% if i.need_rif %}<img title="рифлер" alt="need rifler" src="/static/app/content/rif.png" width="32" height="32" />{%endif%}
+                        {% if i.need_sup %}<img title="саппорт" alt="need support" src="/static/app/content/sup.png" width="32" height="32" />{%endif%}
+                        {% if i.need_igl %}<img title="капитан" alt="need igl" src="/static/app/content/igl.png" width="32" height="32" />{%endif%}
+                        {% if i.need_frg %}<img title="фрагер" alt="need fragger" src="/static/app/content/frg.png" width="32" height="32" />{%endif%}
                     </p>
                     <p><a class="btn btn-default" href="https://steamcommunity.com/gid/{{ i.team_url }}">Подробнее &raquo;</a></p>
                 </div></div>
