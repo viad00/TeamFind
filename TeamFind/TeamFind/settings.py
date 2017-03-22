@@ -200,4 +200,4 @@ CACHES = {
         "KEY_PREFIX": "teamfind"
     }
 }
-CACHE_TTL = 0
+CACHE_TTL = 60
