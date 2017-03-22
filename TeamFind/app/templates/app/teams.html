@@ -2,7 +2,7 @@
 {% block scripts %}
 <script type="text/javascript">
 var n = 0;
-var step = 10;
+var step = 9;
 var e = n+step;
 $(document).ready(function(){
     ajax(n, e);
@@ -11,7 +11,7 @@ $(document).ready(function(){
 });
 
 $(window).scroll(function(){
-    if (($(window).scrollTop() == $(document).height() - $(window).height() | $(window).scrollTop() == $(document).height() - $(window).height() - 1) && !$("#pls_stp").length) {
+    if (($(window).scrollTop() == $(document).height() - $(window).height() | $(window).scrollTop() == $(document).height() - $(window).height() - 1000 | $(window).scrollTop() == $(document).height() - $(window).height() - 100) && !$("#pls_stp").length) {
         ajax(n,e);
         n += step;
         e += step;
@@ -171,7 +171,7 @@ function getCookie(name) {
 {% block content %}
     <div class="row">
         <div class="span9"><h1>Команды</h1></div>
-        <div id="test"><a class="btn btn-default" onclick="show_1()">Параметры</a></div>
+        <div id="test"><a class="btn btn-default" onclick="show_1()">Параметры поиска</a></div>
         <div id="untest" style="display: none;"><a class="btn btn-danger" onclick="hide_1()">Закрыть</a></div>
         <div id="sho" style="display: none;">
             <div class="form-group">
@@ -303,5 +303,5 @@ function getCookie(name) {
         <p> </p>
     </div>
     <div class="row" id="nain"></div>
-    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Нажмите чтобы перейти к началу страницы" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+    <a id="back-to-top" href="#" class="btn btn-default btn-lg back-to-top" role="button" title="Нажмите чтобы перейти к началу страницы" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
 {% endblock %}
