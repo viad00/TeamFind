@@ -14,7 +14,7 @@
 {% else %}
 
 <ul class="nav navbar-nav navbar-right">
-    <li><a href="/login/steam">Войти через SteamID</a></li>
+    <li><a href="{% url "social:begin" "steam" %}">Войти через SteamID</a></li>
 </ul>
 
 {% endif %}

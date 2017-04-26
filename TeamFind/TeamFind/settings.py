@@ -34,7 +34,7 @@ SOCIAL_AUTH_STEAM_API_KEY = 'F1A61ADB142308996B15FC20432579A6'
 NOCAPTCHA = True
 SOCIAL_AUTH_STEAM_EXTRA_DATA = ['player']
 AUTHENTICATION_BACKENDS = (
-    'social.backends.steam.SteamOpenId',
+    'social_core.backends.steam.SteamOpenId',
 )
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/updateinfo'
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'social.apps.django_app.default',
+    'social_django',
     'bootstrapform',
     'captcha',
 ]
@@ -82,8 +82,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social.apps.django_app.context_processors.backends',
-                'social.apps.django_app.context_processors.login_redirect',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -200,4 +200,4 @@ CACHES = {
         "KEY_PREFIX": "teamfind"
     }
 }
-CACHE_TTL = 60
+CACHE_TTL = 5

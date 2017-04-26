@@ -188,9 +188,12 @@ def teamd(request):
 #Страница для обновления информации о клиенте
 def updateinfo(request):
     assert isinstance(request, HttpRequest)
-    if (request.user.get_username() != request.user.social_auth.get(provider='steam').extra_data['player']['steamid']):
-        request.user.username = request.user.social_auth.get(provider='steam').extra_data['player']['steamid']
-        request.user.save()
+    try:
+        if (request.user.get_username() != request.user.social_auth.get(provider='steam').extra_data['player']['steamid']):
+            request.user.username = request.user.social_auth.get(provider='steam').extra_data['player']['steamid']
+            request.user.save()
+    except Exception:
+        return render(request, 'app/text.html', {'title': 'Ошибка', 'text': 'Не найденно команд или не выполнен вход'})
     return redirect('/')
 #Форма для добавления игрока
 def addteam(request):
