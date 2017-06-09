@@ -43,6 +43,12 @@ function ajax(n, e) {
         }
     );
 }
+
+function getMore() {
+        ajax(n,e);
+        n += step;
+        e += step;
+}
 var ranks = ['UN', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'N1', 'N2', 'N3', 'N4', 'M1', 'M2', 'M3', 'M4', 'L1', 'L2', 'SM', 'GE'];
 function cookiegen(min_rank, max_rank) {
     var ex = 0;
@@ -120,6 +126,16 @@ function getCookie(name) {
      $("#untest").hide();
      $("#test").show();
  }
+ function showDesc(id) {
+    $("#show-" + id).hide();
+    $("#body-" + id).show();
+    $("#hide-" + id).show();
+ }
+ function hideDesc(id) {
+    $("#body-" + id).hide();
+    $("#hide-" + id).hide();
+    $("#show-" + id).show();
+ }
  function prim() {
      $("#sho").slideUp();
      var bb = document.getElementById('id_mm').options[document.getElementById('id_mm').selectedIndex].value;
@@ -169,10 +185,11 @@ function getCookie(name) {
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="span9"><h1>Команды</h1></div>
+    <div style="display: inline;">
+        <h1>Команды</h1>
         <div id="test"><a class="btn btn-default" onclick="show_1()">Параметры поиска</a></div>
         <div id="untest" style="display: none;"><a class="btn btn-danger" onclick="hide_1()">Закрыть</a></div>
+        <p> </p>
         <div id="sho" style="display: none;">
             <div class="form-group">
                     <label class="control-label " for="id_mm">{{ is_mm }}</label>
@@ -214,6 +231,7 @@ function getCookie(name) {
                     </select>
                     </div>
             </div>
+            <label class="control-label">Требуемые роли</label>
             <div class="checkbox">
                     <label >
                         <input id="need_awp" type="checkbox" /> <span>{{gamers.AWP}}</span>
@@ -298,10 +316,10 @@ function getCookie(name) {
             </div>
             <a class="btn btn-danger" onclick="hide_1()">Закрыть</a> <a class="btn btn-info" onclick="prim()" href="">Применить</a> <a class="btn btn-default" onclick="sbros()" href="">Сброс</a>
         </div>
-        <p> </p>
-        <div class="span9"><a class="btn btn-default" href="/addteam">Добавить команду</a></div>
+        <a class="btn btn-default" href="/addteam">Добавить команду</a>
         <p> </p>
     </div>
     <div class="row" id="nain"></div>
+    <button class="btn btn-default" onclick="getMore()">Загрузить ещё</button>
     <a id="back-to-top" href="#" class="btn btn-default btn-lg back-to-top" role="button" title="Нажмите чтобы перейти к началу страницы" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
 {% endblock %}

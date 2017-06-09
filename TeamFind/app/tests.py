@@ -7,7 +7,6 @@ import django
 from django.test import TestCase
 from django.conf import settings
 
-# TODO: Configure your database in settings.py and sync before running tests.
 
 class ViewTest(TestCase):
     """Tests for the application views."""

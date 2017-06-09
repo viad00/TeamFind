@@ -1,12 +1,15 @@
 {% for i in teams %}
-                <div class="col-md-4">
+                <div class="col-md-3">
                 <div class="panel panel-default panel-body" align="center">
                     <img class="img-rounded" alt="{{ i.name }} image" src="{{ i.image }}" width="90" height="90">
                     <p>&#0160;</p>
                     <h4>{{ i.name }}</h4>
-                    <p>
+                    <button class="btn btn-default" id="show-{{ i.id }}" onclick="showDesc('{{ i.id }}')">Показать описание</button>
+                    <p id="body-{{ i.id }}" style="display: none; font-size: 18px;">
                         {{ i.description }}
                     </p>
+                    <button class="btn btn-default" id="hide-{{ i.id }}" style="display: none;" onclick="hideDesc('{{ i.id }}')">Скрыть описание</button>
+                    <p> </p>
                     <p>Основана: {{ i.founded }}</p>
                     {% for foo in ranks %}
                         {% if i.min_rank == foo.0 %}

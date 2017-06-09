@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^delete', app.views.delete, name='delete'),
     url(r'^update', app.views.update, name='update'),
     url(r'^crondis', app.views.crondis, name='crondis'),
+    url(r'^help', app.views.help, name='help'),
     url(r'^login/$',
         django.contrib.auth.views.login,
         {

@@ -10,7 +10,7 @@ from django.conf import settings
 
 #Описание модели команд
 class Team(models.Model):
-    name = models.CharField(max_length=19)
+    name = models.CharField(max_length=18)
     owner = models.ForeignKey(User, default=None)
     registered = models.DateTimeField(default=django.utils.timezone.now)
     founded = models.DateField(default=django.utils.timezone.now)

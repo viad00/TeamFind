@@ -21,6 +21,7 @@ from django.views.decorators.vary import vary_on_cookie
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
+
 @cache_page(CACHE_TTL)
 @vary_on_cookie
 def home(request):
@@ -36,6 +37,7 @@ def home(request):
         }
     )
 
+
 @cache_page(CACHE_TTL)
 def contact(request):
     """Renders the contact page."""
@@ -48,6 +50,7 @@ def contact(request):
             'message':'Your contact page.',
         }
     )
+
 
 @cache_page(CACHE_TTL)
 def about(request):
@@ -63,10 +66,23 @@ def about(request):
         }
     )
 
+
+@cache_page(CACHE_TTL)
+def help(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/help.html',
+        {
+            'title':'Справка'
+        }
+    )
+
+
 @cache_page(CACHE_TTL)
 #Рендер страницы с игроками TODO:Players
 def players(request):
-    assert  isinstance(request, HttpRequest)
+    assert isinstance(request, HttpRequest)
     return render(
         request,
         'app/players.html',
@@ -74,6 +90,8 @@ def players(request):
             'title':'Players',
         }
     )
+
+
 #Рендер страницы с командами TODO:Полнотекстовый поиск
 @cache_page(CACHE_TTL)
 @vary_on_cookie
@@ -91,6 +109,7 @@ def teams(request):
             'gamers':settings.GAMERS,
         }
     )
+
 
 @cache_page(CACHE_TTL)
 @vary_on_cookie
@@ -185,6 +204,8 @@ def teamd(request):
             'ranks':settings.RANKS,
         }
     )
+
+
 #Страница для обновления информации о клиенте
 def updateinfo(request):
     assert isinstance(request, HttpRequest)
@@ -195,6 +216,8 @@ def updateinfo(request):
     except Exception:
         return render(request, 'app/text.html', {'title': 'Ошибка', 'text': 'Не найденно команд или не выполнен вход'})
     return redirect('/')
+
+
 #Форма для добавления игрока
 def addteam(request):
     # if this is a POST request we need to process the form data
@@ -246,7 +269,7 @@ def addteam(request):
                 return render(request, 'app/text.html', { 'title':'Ошибка', 'text':'В названии или тексте содержатся недопустимые слова ' + str(words) })
 
             elif meme >= 2:
-                return  render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Не более 2-х команд на аккаунт'})
+                return render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Не более 2-х команд на аккаунт'})
             else:
             # process the data in form.cleaned_data as required
                 tm = models.Team(
@@ -255,7 +278,7 @@ def addteam(request):
                     founded=form.cleaned_data['founded'],
                     description=form.cleaned_data['description'],
                     team_url=steamid,
-                    image = imgurl,
+                    image=imgurl,
                     min_rank=form.cleaned_data['min_rank'],
                     max_rank=form.cleaned_data['max_rank'],
                     is_mm=form.cleaned_data['is_mm'],
@@ -270,7 +293,7 @@ def addteam(request):
                     need_igl=form.cleaned_data['need_igl'],
                 )
                 tm.save()
-                #return render(request, 'app/text.html', {'text': })
+                # return render(request, 'app/text.html', {'text': })
                 # redirect to a new URL:
                 return HttpResponseRedirect('/teams')
 
@@ -279,6 +302,8 @@ def addteam(request):
         form = forms.AddTeamForm
 
     return render(request, 'app/addteam.html', {'title':'Добавить команду', 'form': form})
+
+
 #ЛК
 def myposts(request):
     try:
@@ -286,6 +311,8 @@ def myposts(request):
         return render(request, 'app/posts.html', {'title':'Мои объявления', 'teams':mod})
     except Exception:
         return render(request, 'app/text.html', {'title':'Ошибка', 'text':'Не найденно команд или не выполнен вход'})
+
+
 def delete(request):
     try:
         id = int(request.GET['id'])
@@ -302,6 +329,8 @@ def delete(request):
         return redirect('/myposts')
     except Exception:
         return render(request, 'app/text.html', {'title':'Ошибка', 'text':'Такой команды, игрока не существует либо она не принадлежит пользователю.'})
+
+
 def update(request):
     try:
         id = int(request.GET['id'])
@@ -314,12 +343,14 @@ def update(request):
             return render(request, 'app/text.html', {'title': 'Ошибка',
                                                      'text': 'Такой команды, игрока не существует либо она не принадлежит пользователю'})
         for i in mod:
-            if calendar.timegm(datetime.now().timetuple()) - calendar.timegm(i.registered.timetuple()) > 604800: # 7 days
+            if calendar.timegm(datetime.now().timetuple()) - calendar.timegm(i.registered.timetuple()) > 604800:  # 7 days
                 i.registered = datetime.now()
                 i.save()
         return redirect('/myposts')
     except Exception:
         return render(request, 'app/text.html', {'title':'Ошибка', 'text':'Такой команды, игрока не существует либо она не принадлежит пользователю.'})
+
+
 def crondis(request):
     try:
         kk = request.GET['kek']
@@ -329,7 +360,7 @@ def crondis(request):
 
     if kk == settings.CRON_KEY:
         tdel = datetime.utcfromtimestamp(calendar.timegm(datetime.now().timetuple()) - 2629743) # 1 month
-        mod = models.Team.objects.exclude(registered__gte=tdel).delete()#TODO: Player model
+        mod = models.Team.objects.exclude(registered__gte=tdel).delete()  # TODO: Player model
         return HttpResponse("Deleted "+str(mod[0])+' entries.')
     else:
         return HttpResponse('<html>\n<head><title>404 Not Found</title></head>\n<body bgcolor="white">\n<center><h1>404 Not Found</h1></center>\n<hr><center>nginx/1.10.0 (Ubuntu)</center>\n</body>\n</html>')

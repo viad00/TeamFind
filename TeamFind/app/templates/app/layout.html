@@ -37,6 +37,7 @@
                     <li><a href="{% url 'home' %}">Главная</a></li>
                     <li><a href="{% url 'teams' %}">Команды</a></li>
                     <!--<li><a href="{ url 'players' %}">Игроки</a></li>-->
+                    <li><a href="{% url 'help' %}">FAQ</a></li>
                 </ul>
                 {% include 'app/loginpartial.html' %}
             </div>
@@ -47,7 +48,7 @@
 {% block content %}{% endblock %}
         <hr/>
         <footer>
-            <p>&copy; {% now "Y" %} - <a href="mailto:viad.2000@yandex.ru">Vladislav Utkin</a> </p>
+            <p>&copy; {% now "Y" %} - <a href="mailto:viad.2000@yandex.ru">TeamFnd</a> </p>
         </footer>
     </div>
 {% block scripts %}
