@@ -106,7 +106,7 @@ def teams(request):
             'is_pu': settings.TYPES[settings.TYPES_SETTINGS['PU']][1],
             'is_le': settings.TYPES[settings.TYPES_SETTINGS['LE']][1],
             'is_ca': settings.TYPES[settings.TYPES_SETTINGS['CA']][1],
-            'gamers':settings.GAMERS,
+            'gamers': settings.GAMERS,
         }
     )
 
@@ -364,3 +364,40 @@ def crondis(request):
         return HttpResponse("Deleted "+str(mod[0])+' entries.')
     else:
         return HttpResponse('<html>\n<head><title>404 Not Found</title></head>\n<body bgcolor="white">\n<center><h1>404 Not Found</h1></center>\n<hr><center>nginx/1.10.0 (Ubuntu)</center>\n</body>\n</html>')
+
+
+@cache_page(CACHE_TTL)
+def sitemap(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/sitemap.xml',
+        {
+            'time': datetime.now(),
+            'teams': models.Team.objects.filter(enabled=True),
+        }
+    )
+
+
+@cache_page(CACHE_TTL)
+@vary_on_cookie
+def viewteam(request):
+    assert isinstance(request, HttpRequest)
+    try:
+        id = int(request.GET['id'])
+    except Exception:
+        return render(request, 'app/text.html', {'title': 'Ошибка',
+                                                 'text': 'Такой команды, игрока не существует либо она не принадлежит пользователю.'})
+    team = models.Team.objects.get(id=id)
+    return render(
+        request,
+        'app/viewteam.html',
+        {
+            'title': team.name,
+            'team': team,
+            'is_mm': settings.TYPES[settings.TYPES_SETTINGS['MM']][1],
+            'is_pu': settings.TYPES[settings.TYPES_SETTINGS['PU']][1],
+            'is_le': settings.TYPES[settings.TYPES_SETTINGS['LE']][1],
+            'is_ca': settings.TYPES[settings.TYPES_SETTINGS['CA']][1],
+        }
+    )

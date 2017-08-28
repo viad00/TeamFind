@@ -31,6 +31,8 @@ urlpatterns = [
     url(r'^update', app.views.update, name='update'),
     url(r'^crondis', app.views.crondis, name='crondis'),
     url(r'^help', app.views.help, name='help'),
+    url(r'^sitemap.xml', app.views.sitemap, name='sitemap'),
+    url(r'^viewteam', app.views.viewteam, name='viewteam'),
     url(r'^login/$',
         django.contrib.auth.views.login,
         {

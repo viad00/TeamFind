@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url>
+       <loc>https://teamfnd.ru/</loc>
+       <lastmod>{{ time.isoformat }}</lastmod>
+       <changefreq>hourly</changefreq>
+   </url>
+    <url>
+      <loc>https://teamfnd.ru/help</loc>
+       <changefreq>monthly</changefreq>
+   </url>
+    <url>
+      <loc>https://teamfnd.ru/teams</loc>
+       <lastmod>{{ time.isoformat }}</lastmod>
+       <changefreq>hourly</changefreq>
+   </url>
+    {% for team in teams %}
+    <url>
+        <loc>https://teamfnd.ru/viewteam?id={{ team.id }}</loc>
+        <lastmod>{{ team.registered.isoformat }}</lastmod>
+        <changefreq>weekly</changefreq>
+    </url>
+    {% endfor %}
+</urlset>
