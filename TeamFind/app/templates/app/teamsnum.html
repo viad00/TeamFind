@@ -4,11 +4,6 @@
                     <img class="img-rounded" alt="{{ i.name }} image" src="{{ i.image }}" width="90" height="90">
                     <p>&#0160;</p>
                     <h4>{{ i.name }}</h4>
-                    <button class="btn btn-default" id="show-{{ i.id }}" onclick="showDesc('{{ i.id }}')">Показать описание</button>
-                    <p id="body-{{ i.id }}" style="display: none; font-size: 18px;">
-                        {{ i.description }}
-                    </p>
-                    <button class="btn btn-default" id="hide-{{ i.id }}" style="display: none;" onclick="hideDesc('{{ i.id }}')">Скрыть описание</button>
                     <p> </p>
                     <p>Основана: {{ i.founded }}</p>
                     {% for foo in ranks %}
@@ -30,7 +25,7 @@
                         {% if i.need_igl %}<img title="капитан" alt="need igl" src="/static/app/content/igl.png" width="32" height="32" />{%endif%}
                         {% if i.need_frg %}<img title="фрагер" alt="need fragger" src="/static/app/content/frg.png" width="32" height="32" />{%endif%}
                     </p>
-                    <p><a class="btn btn-default" href="https://steamcommunity.com/gid/{{ i.team_url }}">Подробнее &raquo;</a></p>
+                    <p><a class="btn btn-default" href="/viewteam?id={{ i.id }}">Подробнее &raquo;</a></p>
                 </div></div>
     {% empty %}
     <div class="col-md-12">

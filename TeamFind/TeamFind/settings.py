@@ -191,13 +191,16 @@ ADMINS = [
 ]
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 CACHES = {
-    "default": {
+    "production": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
         "KEY_PREFIX": "teamfind"
+    },
+    "default": {
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
     }
 }
 CACHE_TTL = 5

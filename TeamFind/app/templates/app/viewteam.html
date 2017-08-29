@@ -1,37 +1,17 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-                <div class="col-md-4">
-                <div class="panel panel-default panel-body" align="center">
-                    <img class="img-rounded" alt="{{ team.name }} image" src="{{ team.image }}" width="90" height="90">
-                    <p>&#0160;</p>
-                    <h4>{{ team.name }}</h4>
-                    <p id="body-{{ team.id }}" style="font-size: 18px;">
-                        {{ team.description }}
-                    </p>
-                    <button class="btn btn-default" id="hide-{{ team.id }}" style="display: none;" onclick="hideDesc('{{ team.id }}')">Скрыть описание</button>
-                    <p> </p>
-                    <p>Основана: {{ team.founded }}</p>
-                    {% for foo in ranks %}
-                        {% if team.min_rank == foo.0 %}
-                            <p>От: {{ foo.1 }}</p>
-                        {% elif team.max_rank == foo.0 %}
-                            <p>До: {{ foo.1 }}</p>
-                        {% endif %}
-                    {% endfor %}
-                    <p>{% if team.is_mm %}<div style="color: green">&#9989;{% else %}<div style="color: darkred">&#10006;{% endif %}{{ is_mm }}</div></p>
-                    <p>{% if team.is_pu %}<div style="color: green">&#9989;{% else %}<div style="color: darkred">&#10006;{% endif %}{{ is_pu }}</div></p>
-                    <p>{% if team.is_le %}<div style="color: green">&#9989;{% else %}<div style="color: darkred">&#10006;{% endif %}{{ is_le }}</div></p>
-                    <p>{% if team.is_ca %}<div style="color: green">&#9989;{% else %}<div style="color: darkred">&#10006;{% endif %}{{ is_ca }}</div></p>
-                    <p>
-                        {% if team.need_awp %}<img title="авапер" alt="need awp" src="/static/app/content/awp.png" width="32" height="32" />{%endif%}
-                        {% if team.need_luk %}<img title="люрк" alt="need lurker" src="/static/app/content/luk.png" width="32" height="32" />{%endif%}
-                        {% if team.need_rif %}<img title="рифлер" alt="need rifler" src="/static/app/content/rif.png" width="32" height="32" />{%endif%}
-                        {% if team.need_sup %}<img title="саппорт" alt="need support" src="/static/app/content/sup.png" width="32" height="32" />{%endif%}
-                        {% if team.need_igl %}<img title="капитан" alt="need igl" src="/static/app/content/igl.png" width="32" height="32" />{%endif%}
-                        {% if team.need_frg %}<img title="фрагер" alt="need fragger" src="/static/app/content/frg.png" width="32" height="32" />{%endif%}
-                    </p>
-                    <p><a class="btn btn-default" href="https://steamcommunity.com/gid/{{ team.team_url }}">Подробнее &raquo;</a></p>
-                </div></div>
-
+    <div style="padding-top: 30px">
+        <div class="col-md-3" align="center">
+            <img class="img-rounded" alt="{{ team.name }} image" src="{{ team.image }}" width="180" height="180">
+        </div>
+        <div class="col-md-9" align="center">
+            <h3>{{ team.name }}</h3>
+            <p>Основанна: {{ team.founded }}</p>
+        </div>
+        <div class="col-md-9 panel panel-default panel-body">
+            <p style="font-size: 20px">{{ team.description }}</p>
+        </div>
+    </div>
+    <p class="col-md-12"> </p>
 {% endblock %}

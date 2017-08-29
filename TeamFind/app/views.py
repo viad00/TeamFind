@@ -218,7 +218,7 @@ def updateinfo(request):
     return redirect('/')
 
 
-#Форма для добавления игрока
+#Форма для добавления команды
 def addteam(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -242,6 +242,7 @@ def addteam(request):
             url = urlparse(form.cleaned_data['team_url'])
             bad = True
             steamid = 0
+            imgurl = None
             if url.netloc == 'steamcommunity.com' and url.path[:8] == '/groups/' and url.path.rfind('/') == 7:
                 try:
                     che = 'https://steamcommunity.com' + url.path + '/memberslistxml/?xml=1'
@@ -277,7 +278,7 @@ def addteam(request):
                     owner=request.user,
                     founded=form.cleaned_data['founded'],
                     description=form.cleaned_data['description'],
-                    team_url=steamid,
+                    team_url='https://steamcommunity.com/gid/' + str(steamid),
                     image=imgurl,
                     min_rank=form.cleaned_data['min_rank'],
                     max_rank=form.cleaned_data['max_rank'],
