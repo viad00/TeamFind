@@ -123,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -169,12 +169,12 @@ RANKS = (
         ('GE', 'Всемирная Элита'),
     )
 #Типы игр
-TYPES = (
-        ('MM', 'Соревновательный'),
-        ('PU', 'Игры в лигах'),
-        ('LE', 'Профессиональная Лига'),
-        ('CA', 'Казуальный'),
-    )
+TYPES = {
+        'MM': 'Соревновательный',
+        'PU': 'Игры в лигах',
+        'LE': 'Профессиональная Лига',
+        'CA': 'Казуальный',
+}
 #Типы игроков
 GAMERS = {
     'AWP':'Авапер',
@@ -184,11 +184,11 @@ GAMERS = {
     'SUP':'Саппорт',
     'FRG':'Фрагер',
     }
-TYPES_SETTINGS = {'MM' : 0, 'PU' : 1, 'LE': 2, 'CA': 3}
 
 ADMINS = [
     '76561198055294907',
 ]
+'''
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 CACHES = {
     "production": {
@@ -203,4 +203,4 @@ CACHES = {
         "BACKEND": "django.core.cache.backends.dummy.DummyCache",
     }
 }
-CACHE_TTL = 5
+CACHE_TTL '''
