@@ -11,6 +11,7 @@ from django.shortcuts import redirect
 
 import app.forms
 import app.views
+import app.code
 
 # Uncomment the next lines to enable the admin:
 from django.conf.urls import include
@@ -59,6 +60,7 @@ urlpatterns = [
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^code/push', app.code.push),
     ]
 if settings.DEBUG:
     import debug_toolbar

@@ -102,10 +102,10 @@ def teams(request):
         'app/teams.html',
         {
             'title': 'Teams',
-            'is_mm': settings.TYPES[settings.TYPES_SETTINGS['MM']][1],
-            'is_pu': settings.TYPES[settings.TYPES_SETTINGS['PU']][1],
-            'is_le': settings.TYPES[settings.TYPES_SETTINGS['LE']][1],
-            'is_ca': settings.TYPES[settings.TYPES_SETTINGS['CA']][1],
+            'is_mm': settings.TYPES['MM'],
+            'is_pu': settings.TYPES['PU'],
+            'is_le': settings.TYPES['LE'],
+            'is_ca': settings.TYPES['CA'],
             'gamers': settings.GAMERS,
         }
     )
@@ -396,9 +396,9 @@ def viewteam(request):
         {
             'title': team.name,
             'team': team,
-            'is_mm': settings.TYPES[settings.TYPES_SETTINGS['MM']][1],
-            'is_pu': settings.TYPES[settings.TYPES_SETTINGS['PU']][1],
-            'is_le': settings.TYPES[settings.TYPES_SETTINGS['LE']][1],
-            'is_ca': settings.TYPES[settings.TYPES_SETTINGS['CA']][1],
+            'is_mm': settings.TYPES['MM'],
+            'is_pu': settings.TYPES['PU'],
+            'is_le': settings.TYPES['LE'],
+            'is_ca': settings.TYPES['CA'],
         }
     )

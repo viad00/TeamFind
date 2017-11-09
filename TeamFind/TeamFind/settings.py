@@ -123,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'ru-RU'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -202,5 +202,6 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.dummy.DummyCache",
     }
-}
-CACHE_TTL '''
+}'''
+CACHE_TTL = 0
+CODE_UPDATE_EXEC = 'start cmd.exe'
