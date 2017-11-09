@@ -1,7 +1,8 @@
 {% extends "app/layout.html" %}
 {% load bootstrap %}
+{% load i18n %}
 {% block content %}
-    <h1>Добавление команды</h1>
+    <h1>{%  trans "Добавление команды" %}</h1>
     <p>Здесь вы можете добавить команду</p>
     <div class="jumbotron">
     {% if user.is_authenticated %}

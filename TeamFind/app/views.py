@@ -2,10 +2,10 @@
 Definition of views.
 """
 import calendar
-
 import django
 from app import forms
 from app import models
+from app import strings
 from django.http import HttpRequest
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -18,6 +18,7 @@ from django.conf import settings
 from django.utils.datetime_safe import datetime
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_cookie
+from django.utils.translation import ugettext as _
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
@@ -32,7 +33,7 @@ def home(request):
         request,
         'app/index.html',
         {
-            'title':'Главная',
+            'title':_('Главная'),
             'count':cc,
         }
     )
@@ -74,7 +75,7 @@ def help(request):
         request,
         'app/help.html',
         {
-            'title':'Справка'
+            'title':_('Справка')
         }
     )
 
@@ -102,11 +103,11 @@ def teams(request):
         'app/teams.html',
         {
             'title': 'Teams',
-            'is_mm': settings.TYPES['MM'],
-            'is_pu': settings.TYPES['PU'],
-            'is_le': settings.TYPES['LE'],
-            'is_ca': settings.TYPES['CA'],
-            'gamers': settings.GAMERS,
+            'is_mm': strings.TYPES['MM'],
+            'is_pu': strings.TYPES['PU'],
+            'is_le': strings.TYPES['LE'],
+            'is_ca': strings.TYPES['CA'],
+            'gamers': strings.GAMERS,
         }
     )
 
@@ -154,7 +155,7 @@ def teamd(request):
     except Exception:
         mm = True
     try:
-        for rank in settings.RANKS:
+        for rank in strings.RANKS:
             if request.COOKIES['ex_'+rank[0]] == '1':
                 mod = mod.exclude(min_rank=rank[0])
                 mod = mod.exclude(max_rank=rank[0])
@@ -197,11 +198,11 @@ def teamd(request):
         'app/teamsnum.html',
         {
             'teams':mod,
-            'is_mm':settings.TYPES['MM'],
-            'is_pu':settings.TYPES['PU'],
-            'is_le':settings.TYPES['LE'],
-            'is_ca':settings.TYPES['CA'],
-            'ranks':settings.RANKS,
+            'is_mm':strings.TYPES['MM'],
+            'is_pu':strings.TYPES['PU'],
+            'is_le':strings.TYPES['LE'],
+            'is_ca':strings.TYPES['CA'],
+            'ranks':strings.RANKS,
         }
     )
 
@@ -214,7 +215,7 @@ def updateinfo(request):
             request.user.username = request.user.social_auth.get(provider='steam').extra_data['player']['steamid']
             request.user.save()
     except Exception:
-        return render(request, 'app/text.html', {'title': 'Ошибка', 'text': 'Не найденно команд или не выполнен вход'})
+        return render(request, 'app/text.html', {'title': 'Ошибка', 'text': _('Не найденно команд или не выполнен вход')})
     return redirect('/')
 
 
@@ -261,16 +262,16 @@ def addteam(request):
                 meme = models.Team.objects.filter(owner=request.user).count()
 
             if text[0] > 30:
-                return render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Какое-то слово(а) в вашем описании'
-                                                                         ' больше 30 символов.' })
+                return render(request, 'app/text.html', { 'title':'Ошибка', 'text':_('Какое-то слово(а) в вашем описании'
+                                                                         ' больше 30 символов.') })
             elif bad:
-                return  render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Проверьте формат ссылки на группу в'
-                                                                                    ' Steam. Например: http://steamcommunity.com/groups/potatogroup'})
+                return  render(request, 'app/text.html', { 'title':'Ошибка', 'text':_('Проверьте формат ссылки на группу в'
+                                                                                    ' Steam. Например: http://steamcommunity.com/groups/potatogroup')})
             elif badword:
-                return render(request, 'app/text.html', { 'title':'Ошибка', 'text':'В названии или тексте содержатся недопустимые слова ' + str(words) })
+                return render(request, 'app/text.html', { 'title':'Ошибка', 'text':_('В названии или тексте содержатся недопустимые слова ') + str(words) })
 
             elif meme >= 2:
-                return render(request, 'app/text.html', { 'title':'Ошибка', 'text':'Не более 2-х команд на аккаунт'})
+                return render(request, 'app/text.html', { 'title':'Ошибка', 'text':_('Не более 2-х команд на аккаунт')})
             else:
             # process the data in form.cleaned_data as required
                 tm = models.Team(
@@ -302,16 +303,16 @@ def addteam(request):
     else:
         form = forms.AddTeamForm
 
-    return render(request, 'app/addteam.html', {'title':'Добавить команду', 'form': form})
+    return render(request, 'app/addteam.html', {'title':_('Добавить команду'), 'form': form})
 
 
 #ЛК
 def myposts(request):
     try:
         mod = models.Team.objects.filter(enabled=True, owner=request.user)
-        return render(request, 'app/posts.html', {'title':'Мои объявления', 'teams':mod})
+        return render(request, 'app/posts.html', {'title':_('Мои объявления'), 'teams':mod})
     except Exception:
-        return render(request, 'app/text.html', {'title':'Ошибка', 'text':'Не найденно команд или не выполнен вход'})
+        return render(request, 'app/text.html', {'title':_('Ошибка'), 'text':_('Не найденно команд или не выполнен вход')})
 
 
 def delete(request):
@@ -323,13 +324,13 @@ def delete(request):
         elif type == 'player': #TODO: Player model
             mod = models.Team.objects.filter(id=id, owner=request.user)
         else:
-            return render(request, 'app/text.html', {'title': 'Ошибка',
-                                                     'text': 'Такой команды, игрока не существует либо она не принадлежит пользователю'})
+            return render(request, 'app/text.html', {'title': _('Ошибка'),
+                                                     'text': _('Такой команды, игрока не существует либо она не принадлежит пользователю')})
         for i in mod:
             i.delete()
         return redirect('/myposts')
     except Exception:
-        return render(request, 'app/text.html', {'title':'Ошибка', 'text':'Такой команды, игрока не существует либо она не принадлежит пользователю.'})
+        return render(request, 'app/text.html', {'title':_('Ошибка'), 'text':_('Такой команды, игрока не существует либо она не принадлежит пользователю.')})
 
 
 def update(request):
@@ -341,15 +342,15 @@ def update(request):
         elif type == 'player': #TODO: Player model
             mod = models.Team.objects.filter(id=id, owner=request.user)
         else:
-            return render(request, 'app/text.html', {'title': 'Ошибка',
-                                                     'text': 'Такой команды, игрока не существует либо она не принадлежит пользователю'})
+            return render(request, 'app/text.html', {'title': _('Ошибка'),
+                                                     'text': _('Такой команды, игрока не существует либо она не принадлежит пользователю')})
         for i in mod:
             if calendar.timegm(datetime.now().timetuple()) - calendar.timegm(i.registered.timetuple()) > 604800:  # 7 days
                 i.registered = datetime.now()
                 i.save()
         return redirect('/myposts')
     except Exception:
-        return render(request, 'app/text.html', {'title':'Ошибка', 'text':'Такой команды, игрока не существует либо она не принадлежит пользователю.'})
+        return render(request, 'app/text.html', {'title':_('Ошибка'), 'text':_('Такой команды, игрока не существует либо она не принадлежит пользователю.')})
 
 
 def crondis(request):
@@ -387,8 +388,8 @@ def viewteam(request):
     try:
         id = int(request.GET['id'])
     except Exception:
-        return render(request, 'app/text.html', {'title': 'Ошибка',
-                                                 'text': 'Такой команды, игрока не существует либо она не принадлежит пользователю.'})
+        return render(request, 'app/text.html', {'title': _('Ошибка'),
+                                                 'text': _('Такой команды, игрока не существует либо она не принадлежит пользователю.')})
     team = models.Team.objects.get(id=id)
     return render(
         request,
@@ -396,9 +397,9 @@ def viewteam(request):
         {
             'title': team.name,
             'team': team,
-            'is_mm': settings.TYPES['MM'],
-            'is_pu': settings.TYPES['PU'],
-            'is_le': settings.TYPES['LE'],
-            'is_ca': settings.TYPES['CA'],
+            'is_mm': strings.TYPES['MM'],
+            'is_pu': strings.TYPES['PU'],
+            'is_le': strings.TYPES['LE'],
+            'is_ca': strings.TYPES['CA'],
         }
     )

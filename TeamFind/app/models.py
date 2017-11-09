@@ -4,7 +4,7 @@ Definition of models.
 import django
 from django.contrib.auth.models import User
 from django.db import models
-from django.conf import settings
+from app import strings
 
 # Create your models here.
 
@@ -14,11 +14,11 @@ class Team(models.Model):
     owner = models.ForeignKey(User, default=None)
     registered = models.DateTimeField(default=django.utils.timezone.now)
     founded = models.DateField(default=django.utils.timezone.now)
-    description = models.TextField(max_length=500, default='Капитан команды ещё не дал описание. Сообщите об этом ему')
+    description = models.TextField(max_length=500, default='There are no description for team yet')
     team_url = models.URLField(default=None)
     image = models.URLField(default=None)
-    min_rank = models.CharField(max_length=2, choices=settings.RANKS, default='UN')
-    max_rank = models.CharField(max_length=2, choices=settings.RANKS, default='GE')
+    min_rank = models.CharField(max_length=2, choices=strings.RANKS, default='UN')
+    max_rank = models.CharField(max_length=2, choices=strings.RANKS, default='GE')
     is_mm = models.BooleanField(default=True)
     is_pu = models.BooleanField(default=True)
     is_le = models.BooleanField(default=True)

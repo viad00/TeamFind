@@ -1,9 +1,11 @@
 ﻿<!DOCTYPE html>
-<html lang="ru">
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Сайт для поиска команды csgo на котором вы можете найти себе команду в cs:go. TeamFind" />
+    <meta name="description" content="{% trans "Сайт для поиска команды csgo на котором вы можете найти себе команду в cs:go. TeamFind" %}" />
     <meta name="keywords" content="поиск, команды, csgo, cs go, cs:go, найти, команду, Team, Find, TeamFind" />
     <title>{{ title }} - TeamFnd</title>
     {% load staticfiles %}

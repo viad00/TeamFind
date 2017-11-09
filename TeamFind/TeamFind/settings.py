@@ -42,6 +42,10 @@ SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/updateinfo'
 
 # Application definition
 
+LOCALE_PATHS = [
+    'locale',
+]
+
 INSTALLED_APPS = [
     'app',
     # Add your apps here to enable them
