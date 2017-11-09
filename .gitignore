@@ -8,6 +8,7 @@
 *.sln.docstates
 *.sqlite3
 *.pyc
+*.mo
 __pycache__/
 .idea/
 env/
@@ -148,7 +149,7 @@ publish/
 *.[Pp]ublish.xml
 *.azurePubxml
 
-# TODO: Un-comment the next line if you do not want to checkin
+# Un-comment the next line if you do not want to checkin
 # your web deploy settings because they may include unencrypted
 # passwords
 #*.pubxml
