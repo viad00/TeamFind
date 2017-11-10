@@ -1,4 +1,5 @@
 {% extends "app/layout.html" %}
+{% load i18n %}
 {% block scripts %}
 <script type="text/javascript">
 var n = 0;
@@ -186,18 +187,18 @@ function getCookie(name) {
 
 {% block content %}
     <div style="display: inline;">
-        <h1>Команды</h1>
-        <div id="test"><a class="btn btn-default" onclick="show_1()">Параметры поиска</a></div>
-        <div id="untest" style="display: none;"><a class="btn btn-danger" onclick="hide_1()">Закрыть</a></div>
+        <h1>{% trans "Команды" %}</h1>
+        <div id="test"><a class="btn btn-default" onclick="show_1()">{% trans "Параметры поиска" %}</a></div>
+        <div id="untest" style="display: none;"><a class="btn btn-danger" onclick="hide_1()">{% trans "Закрыть" %}</a></div>
         <p> </p>
         <div id="sho" style="display: none;">
             <div class="form-group">
                     <label class="control-label " for="id_mm">{{ is_mm }}</label>
                     <div class=" ">
                     <select class=" form-control" id="id_mm" name="mm">
-                        <option value="3" selected="selected">Без разницы</option>
-                        <option value="0">Нет</option>
-                        <option value="1">Да</option>
+                        <option value="3" selected="selected">{% trans "Без разницы" %}</option>
+                        <option value="0">{% trans "Нет" %}</option>
+                        <option value="1">{% trans "Да" %}</option>
                     </select>
                     </div>
             </div>
@@ -205,9 +206,9 @@ function getCookie(name) {
                     <label class="control-label " for="id_pu">{{ is_pu }}</label>
                     <div class=" ">
                     <select class=" form-control" id="id_pu" name="pu">
-                        <option value="3" selected="selected">Без разницы</option>
-                        <option value="0">Нет</option>
-                        <option value="1">Да</option>
+                        <option value="3" selected="selected">{% trans "Без разницы" %}</option>
+                        <option value="0">{% trans "Нет" %}</option>
+                        <option value="1">{% trans "Да" %}</option>
                     </select>
                     </div>
             </div>
@@ -215,9 +216,9 @@ function getCookie(name) {
                     <label class="control-label " for="id_le">{{ is_le }}</label>
                     <div class=" ">
                     <select class=" form-control" id="id_le" name="le">
-                        <option value="3" selected="selected">Без разницы</option>
-                        <option value="0">Нет</option>
-                        <option value="1">Да</option>
+                        <option value="3" selected="selected">{% trans "Без разницы" %}</option>
+                        <option value="0">{% trans "Нет" %}</option>
+                        <option value="1">{% trans "Да" %}</option>
                     </select>
                     </div>
             </div>
@@ -225,13 +226,13 @@ function getCookie(name) {
                     <label class="control-label " for="id_ca">{{ is_ca }}</label>
                     <div class=" ">
                     <select class=" form-control" id="id_ca" name="ca">
-                        <option value="3" selected="selected">Без разницы</option>
-                        <option value="0">Нет</option>
-                        <option value="1">Да</option>
+                        <option value="3" selected="selected">{% trans "Без разницы" %}</option>
+                        <option value="0">{% trans "Нет" %}</option>
+                        <option value="1">{% trans "Да" %}</option>
                     </select>
                     </div>
             </div>
-            <label class="control-label">Требуемые роли</label>
+            <label class="control-label">{% trans "Требуемые роли" %}</label>
             <div class="checkbox">
                     <label >
                         <input id="need_awp" type="checkbox" /> <span>{{gamers.AWP}}</span>
@@ -263,63 +264,63 @@ function getCookie(name) {
                     </label>
             </div>
             <div class="form-group">
-                    <label class="control-label " for="id_min_rank">Минимальный ранг</label>
+                    <label class="control-label " for="id_min_rank">{% trans "Минимальный ранг" %}</label>
                     <div class=" ">
                     <select class=" form-control" id="id_min_rank" name="min_rank" required="">
-                        <option value="UN" selected="selected">Без ранга</option>
-                        <option value="S1">Сильвер 1</option>
-                        <option value="S2">Сильвер 2</option>
-                        <option value="S3">Сильвер 3</option>
-                        <option value="S4">Сильвер 4</option>
-                        <option value="S5">Сильвер Элита</option>
-                        <option value="S6">Сильвер Великий Магистр</option>
-                        <option value="N1">Золотая Звезда 1</option>
-                        <option value="N2">Золотая Звезда 2</option>
-                        <option value="N3">Золотая Звезда 3</option>
-                        <option value="N4">Золотая Звезда Магистр</option>
-                        <option value="M1">Магистр Хранитель 1</option>
-                        <option value="M2">Магистр Хранитель 2</option>
-                        <option value="M3">Магистр Хранитель Элита</option>
-                        <option value="M4">Заслуженный Магистр Хранитель</option>
-                        <option value="L1">Легендарный Беркут</option>
-                        <option value="L2">Легендарный Беркут Магистр</option>
-                        <option value="SM">Великий Магистр Высшего Ранга</option>
-                        <option value="GE">Всемирная Элита</option>
+                        <option value="UN" selected="selected">{% trans "Без ранга" %}</option>
+                        <option value="S1">{% trans "Сильвер 1" %}</option>
+                        <option value="S2">{% trans "Сильвер 2" %}</option>
+                        <option value="S3">{% trans "Сильвер 3" %}</option>
+                        <option value="S4">{% trans "Сильвер 4" %}</option>
+                        <option value="S5">{% trans "Сильвер Элита" %}</option>
+                        <option value="S6">{% trans "Сильвер Великий Магистр" %}</option>
+                        <option value="N1">{% trans "Золотая Звезда 1" %}</option>
+                        <option value="N2">{% trans "Золотая Звезда 2" %}</option>
+                        <option value="N3">{% trans "Золотая Звезда 3" %]</option>
+                        <option value="N4">{% trans "Золотая Звезда Магистр" %}</option>
+                        <option value="M1">{% trans "Магистр Хранитель 1" %}</option>
+                        <option value="M2">{% trans "Магистр Хранитель 2" %}</option>
+                        <option value="M3">{% trans "Магистр Хранитель Элита" %}</option>
+                        <option value="M4">{% trans "Заслуженный Магистр Хранитель" %}</option>
+                        <option value="L1">{% trans "Легендарный Беркут" %}</option>
+                        <option value="L2">{% trans "Легендарный Беркут Магистр" %}</option>
+                        <option value="SM">{% trans "Великий Магистр Высшего Ранга" %}</option>
+                        <option value="GE">{% trans "Всемирная Элита" %}</option>
                     </select>
                     </div>
             </div>
             <div class="form-group">
-                    <label class="control-label " for="id_max_rank">Максимальный ранг</label>
+                    <label class="control-label " for="id_max_rank">{% trans "Максимальный ранг" %}</label>
                     <div class=" ">
                     <select class=" form-control" id="id_max_rank" name="max_rank" required="">
-                        <option value="UN">Без ранга</option>
-                        <option value="S1">Сильвер 1</option>
-                        <option value="S2">Сильвер 2</option>
-                        <option value="S3">Сильвер 3</option>
-                        <option value="S4">Сильвер 4</option>
-                        <option value="S5">Сильвер Элита</option>
-                        <option value="S6">Сильвер Великий Магистр</option>
-                        <option value="N1">Золотая Звезда 1</option>
-                        <option value="N2">Золотая Звезда 2</option>
-                        <option value="N3">Золотая Звезда 3</option>
-                        <option value="N4">Золотая Звезда Магистр</option>
-                        <option value="M1">Магистр Хранитель 1</option>
-                        <option value="M2">Магистр Хранитель 2</option>
-                        <option value="M3">Магистр Хранитель Элита</option>
-                        <option value="M4">Заслуженный Магистр Хранитель</option>
-                        <option value="L1">Легендарный Беркут</option>
-                        <option value="L2">Легендарный Беркут Магистр</option>
-                        <option value="SM">Великий Магистр Высшего Ранга</option>
-                        <option value="GE" selected="selected">Всемирная Элита</option>
+                        <option value="UN">{% trans "Без ранга" %}</option>
+                        <option value="S1">{% trans "Сильвер 1" %}</option>
+                        <option value="S2">{% trans "Сильвер 2" %}</option>
+                        <option value="S3">{% trans "Сильвер 3" %}</option>
+                        <option value="S4">{% trans "Сильвер 4" %}</option>
+                        <option value="S5">{% trans "Сильвер Элита" %}</option>
+                        <option value="S6">{% trans "Сильвер Великий Магистр" %}</option>
+                        <option value="N1">{% trans "Золотая Звезда 1" %}</option>
+                        <option value="N2">{% trans "Золотая Звезда 2" %}</option>
+                        <option value="N3">{% trans "Золотая Звезда 3" %}</option>
+                        <option value="N4">{% trans "Золотая Звезда Магистр" %}</option>
+                        <option value="M1">{% trans "Магистр Хранитель 1" %}</option>
+                        <option value="M2">{% trans "Магистр Хранитель 2" %}</option>
+                        <option value="M3">{% trans "Магистр Хранитель Элита" %}</option>
+                        <option value="M4">{% trans "Заслуженный Магистр Хранитель" %}</option>
+                        <option value="L1">{% trans "Легендарный Беркут" %}</option>
+                        <option value="L2">{% trans "Легендарный Беркут Магистр" %}</option>
+                        <option value="SM">{% trans "Великий Магистр Высшего Ранга" %}</option>
+                        <option value="GE" selected="selected">{% trans "Всемирная Элита" %}</option>
                     </select>
                     </div>
             </div>
-            <a class="btn btn-danger" onclick="hide_1()">Закрыть</a> <a class="btn btn-info" onclick="prim()" href="">Применить</a> <a class="btn btn-default" onclick="sbros()" href="">Сброс</a>
+            <a class="btn btn-danger" onclick="hide_1()">{% trans "Закрыть" %}</a> <a class="btn btn-info" onclick="prim()" href="">{% trans "Применить" %}</a> <a class="btn btn-default" onclick="sbros()" href="">{% trans "Сброс" %}</a>
         </div>
-        <a class="btn btn-default" href="/addteam">Добавить команду</a>
+        <a class="btn btn-default" href="/addteam">{% trans "Добавить команду" %}</a>
         <p> </p>
     </div>
     <div class="row" id="nain"></div>
-    <button class="btn btn-default" onclick="getMore()">Загрузить ещё</button>
-    <a id="back-to-top" href="#" class="btn btn-default btn-lg back-to-top" role="button" title="Нажмите чтобы перейти к началу страницы" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+    <button class="btn btn-default" onclick="getMore()">{% trans "Загрузить ещё" %}</button>
+    <a id="back-to-top" href="#" class="btn btn-default btn-lg back-to-top" role="button" title="{% trans "Нажмите чтобы перейти к началу страницы" %}" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
 {% endblock %}

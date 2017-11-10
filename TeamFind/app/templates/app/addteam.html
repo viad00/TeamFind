@@ -3,19 +3,19 @@
 {% load i18n %}
 {% block content %}
     <h1>{%  trans "Добавление команды" %}</h1>
-    <p>Здесь вы можете добавить команду</p>
+    <p>{% trans "Здесь вы можете добавить команду" %}</p>
     <div class="jumbotron">
     {% if user.is_authenticated %}
         <form role="form" method="post">
-            <legend>Добавить команду</legend>
+            <legend>{% trans "Добавить команду" %}</legend>
             {% csrf_token %}
             {{ form|bootstrap }}
             <div class="form-group">
-              <button type="submit" class="btn btn-primary">Добавить</button>
+              <button type="submit" class="btn btn-primary">{% trans "Добавить" %}</button>
             </div>
         </form>
     {% else %}
-    <p>Вам необходимо зайти перед добавлением команды.</p>
+    <p>{% trans "Вам необходимо зайти перед добавлением команды." %}</p>
     {% endif %}
     </div>
 {% endblock %}

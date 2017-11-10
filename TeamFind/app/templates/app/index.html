@@ -1,15 +1,16 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
+{% load i18n %}
 
 <div class="jumbotron">
     <h1>TeamFnd</h1>
-    <p class="lead">Добро пожаловать на TeamFnd - сервис где вы можете найти команду<!-- или рекрутировать игроков--> в CS:GO</p>
+    <p class="lead">{% trans "Добро пожаловать на TeamFnd - сервис где вы можете найти команду в CS:GO" %}</p>
     <p>
-        <a href="teams" class="btn btn-primary btn-large">Смотреть команды CS:GO &raquo;</a>
+        <a href="teams" class="btn btn-primary btn-large">{% trans "Смотреть команды CS:GO" %} &raquo;</a>
         <!--<a href="players" class="btn btn-primary btn-large">Игроки &raquo;</a>-->
     </p>
-    <p class="lead">Сейчас на сайте представленно {{ count }} команд.</p>
+    <p class="lead">{% blocktrans %}Сейчас на сайте представленно {{ count }} команд.{% endblocktrans %}</p>
 </div>
 <div class="row">
 </div>

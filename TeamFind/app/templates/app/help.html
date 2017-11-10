@@ -1,8 +1,10 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
+{% load i18n %}
 
 <div class="jumbotron">
+    {% blocktrans %}
     <h1>FAQ</h1>
     <h4>Как мне добавить команду ?</h4>
     <p class="lead">Вы можите добавить команду <a href="/addteam">здесь</a>. Для этого вам надо зайти через SteamID.</p>
@@ -12,5 +14,6 @@
     <h4>Безопасно ли входить через SteamID ?</h4>
     <p class="lead">Да это абсолютно безопасно. Авторизация проходит полностью на сайте Steam и вы можете быть уверены
         что ваш аккаунт не украдут.</p>
+    {% endblocktrans %}
 </div>
 {% endblock %}
