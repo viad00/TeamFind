@@ -103,10 +103,10 @@ def teams(request):
         'app/teams.html',
         {
             'title': 'Teams',
-            'is_mm': strings.TYPES['MM'],
-            'is_pu': strings.TYPES['PU'],
-            'is_le': strings.TYPES['LE'],
-            'is_ca': strings.TYPES['CA'],
+            'is_mm': _(strings.TYPES['MM']),
+            'is_pu': _(strings.TYPES['PU']),
+            'is_le': _(strings.TYPES['LE']),
+            'is_ca': _(strings.TYPES['CA']),
             'gamers': strings.GAMERS,
         }
     )

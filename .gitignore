@@ -12,6 +12,7 @@
 __pycache__/
 .idea/
 env/
+venv/
 TeamFind/env/
 TeamFind/lin_env/
 TeamFind/app/migrations
