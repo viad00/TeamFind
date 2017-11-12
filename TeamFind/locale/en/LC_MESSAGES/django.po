@@ -6,6 +6,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-13 01:28+0300\n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,6 +16,42 @@ msgstr ""
 #: app/forms.py:18
 msgid "Password"
 msgstr "Password"
+
+#: app/forms.py:25
+#, fuzzy
+#| msgid "Добавление команды"
+msgid "Название команды"
+msgstr "Team name"
+
+#: app/forms.py:26
+#, fuzzy
+#| msgid "Добавление команды"
+msgid "Описание команды"
+msgstr "Team description"
+
+#: app/forms.py:27
+msgid "Ссылка на группу в Steam"
+msgstr "Link to Steam Group"
+
+#: app/forms.py:28 app/templates/app/teamsnum.html:9
+#: app/templates/app/viewteam.html:10
+msgid "Основана"
+msgstr "Founded"
+
+#: app/forms.py:29 app/templates/app/teams.html:267
+msgid "Минимальный ранг"
+msgstr "Min rank"
+
+#: app/forms.py:30 app/templates/app/teams.html:293
+msgid "Максимальный ранг"
+msgstr "Max rank"
+
+#: app/forms.py:35 app/forms.py:36 app/forms.py:37 app/forms.py:38
+#: app/forms.py:39 app/forms.py:40
+#, fuzzy
+#| msgid "Требуемые роли"
+msgid "Требуется "
+msgstr "Required "
 
 #: app/strings.py:6 app/templates/app/teams.html:270
 #: app/templates/app/teams.html:296
@@ -190,23 +228,22 @@ msgstr ""
 "\n"
 "<h1>FAQ</h1>\n"
 "<h4>How do I add a command?</h4>\n"
-"<p class=\"lead\">You can add the <a href=\"/addteam\">command here</"
-"a>. For this you need to log in through SteamID.</p>\n"
+"<p class=\"lead\">You can add the <a href=\"/addteam\">command here</a>. For "
+"this you need to log in through SteamID.</p>\n"
 "<h4>How long will my post be on the site?</h4>\n"
-"<p class=\"lead\">Non-renewed post are automatically deleted after"
-"1 month. You can renew post in\n"
+"<p class=\"lead\">Non-renewed post are automatically deleted after1 month. "
+"You can renew post in\n"
 "section <a href=\"/myposts\">My Posts</a>.</p>\n"
 "<h4>Is it safe to log in via SteamID?</h4>\n"
-"<p class=\"lead\">Yes it's completely safe. Authorization passes"
-"completely on the Steam site and you can be sure\n"
+"<p class=\"lead\">Yes it's completely safe. Authorization passescompletely "
+"on the Steam site and you can be sure\n"
 "that your account will not be stolen.</p>\n"
 "    "
 
 #: app/templates/app/index.html:8
 msgid ""
 "Добро пожаловать на TeamFnd - сервис где вы можете найти команду в CS:GO"
-msgstr ""
-"Welcome to TeamFnd - a service where you can find a team in CS:GO"
+msgstr "Welcome to TeamFnd - a service where you can find a team in CS:GO"
 
 #: app/templates/app/index.html:10
 msgid "Смотреть команды CS:GO"
@@ -222,8 +259,8 @@ msgid ""
 "Сайт для поиска команды csgo на котором вы можете найти себе команду в cs:"
 "go. TeamFind"
 msgstr ""
-"A site for finding the csgo command on which you can find yourself a command in cs:"
-"go. TeamFind"
+"A site for finding the csgo command on which you can find yourself a command "
+"in cs:go. TeamFind"
 
 #: app/templates/app/layout.html:40 app/views.py:36
 msgid "Главная"
@@ -251,8 +288,8 @@ msgid ""
 "Внимание! Созданные объявления удаляются через 30 дней. Вы можете продлить "
 "объявление нажав на кнопку продлить."
 msgstr ""
-"Warning: Created posts are deleted after 30 days .You can extend the"
-"post delete time by clicking on the renew button."
+"Warning: Created posts are deleted after 30 days .You can extend thepost "
+"delete time by clicking on the renew button."
 
 #: app/templates/app/posts.html:25
 msgid "Название"
@@ -305,14 +342,6 @@ msgstr "Yes"
 msgid "Требуемые роли"
 msgstr "Roles required"
 
-#: app/templates/app/teams.html:267
-msgid "Минимальный ранг"
-msgstr "Min rank"
-
-#: app/templates/app/teams.html:293
-msgid "Максимальный ранг"
-msgstr "Max rank"
-
 #: app/templates/app/teams.html:318
 msgid "Применить"
 msgstr "Submit"
@@ -328,10 +357,6 @@ msgstr "Get more"
 #: app/templates/app/teams.html:325
 msgid "Нажмите чтобы перейти к началу страницы"
 msgstr "Click to go to the top of the page"
-
-#: app/templates/app/teamsnum.html:9
-msgid "Основана"
-msgstr "Founded"
 
 #: app/templates/app/teamsnum.html:12
 msgid "От"
@@ -390,8 +415,8 @@ msgid ""
 "Проверьте формат ссылки на группу в Steam. Например: http://steamcommunity."
 "com/groups/potatogroup"
 msgstr ""
-"Check the format of the link to the group on Steam. For example: http://steamcommunity."
-"com/groups/potatogroup"
+"Check the format of the link to the group on Steam. For example: http://"
+"steamcommunity.com/groups/potatogroup"
 
 #: app/views.py:271
 msgid "В названии или тексте содержатся недопустимые слова "
@@ -409,11 +434,9 @@ msgstr "Error"
 #: app/views.py:328 app/views.py:346
 msgid ""
 "Такой команды, игрока не существует либо она не принадлежит пользователю"
-msgstr ""
-"This object is not exist or have wrong permissions"
+msgstr "This object is not exist or have wrong permissions"
 
 #: app/views.py:333 app/views.py:353 app/views.py:392
 msgid ""
 "Такой команды, игрока не существует либо она не принадлежит пользователю."
-msgstr ""
-"This object is not exist or have wrong permissions"
+msgstr "This object is not exist or have wrong permissions"
