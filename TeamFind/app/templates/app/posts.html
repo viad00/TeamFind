@@ -37,10 +37,10 @@ function hide_desc(id) {
                 <td><a href="https://steamcommunity.com/gid/{{ i.team_url }}">{{ i.team_url }}</a></td>
                 <td>{{ i.registered }}</td>
                 <td>
-                    <a href="/delete/?id={{ i.id }}&type=team"><button class="btn btn-danger">Удалить</button></a>
-                    <a href="/update/?id={{ i.id }}&type=team"><button class="btn btn-info">Продлить</button></a>
-                    <button id="show_{{ i.id }}" class="btn btn-default" onclick="show_desc({{ i.id }})">Описание</button>
-                    <button id="hide_{{ i.id }}" class="btn btn-default" onclick="hide_desc({{ i.id }})" style="display: none;">Скрыть</button>
+                    <a href="/delete/?id={{ i.id }}&type=team"><button class="btn btn-danger">{% trans "Удалить" %}</button></a>
+                    <a href="/update/?id={{ i.id }}&type=team"><button class="btn btn-info">{% trans "Продлить" %}</button></a>
+                    <button id="show_{{ i.id }}" class="btn btn-default" onclick="show_desc({{ i.id }})">{% trans "Описание" %}</button>
+                    <button id="hide_{{ i.id }}" class="btn btn-default" onclick="hide_desc({{ i.id }})" style="display: none;">{% trans "Скрыть" %}</button>
                 </td>
             </tr>
             <tr id="desctd_{{ i.id }}" style="display: none;"><td colspan="5" >{{ i.description }}</td></tr>
