@@ -18,14 +18,10 @@ msgid "Password"
 msgstr "Password"
 
 #: app/forms.py:25
-#, fuzzy
-#| msgid "Добавление команды"
 msgid "Название команды"
 msgstr "Team name"
 
 #: app/forms.py:26
-#, fuzzy
-#| msgid "Добавление команды"
 msgid "Описание команды"
 msgstr "Team description"
 
@@ -48,8 +44,6 @@ msgstr "Max rank"
 
 #: app/forms.py:35 app/forms.py:36 app/forms.py:37 app/forms.py:38
 #: app/forms.py:39 app/forms.py:40
-#, fuzzy
-#| msgid "Требуемые роли"
 msgid "Требуется "
 msgstr "Required "
 
