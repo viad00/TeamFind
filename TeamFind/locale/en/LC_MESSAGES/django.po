@@ -196,7 +196,7 @@ msgstr "Add team"
 
 #: app/templates/app/addteam.html:14
 msgid "Добавить"
-msgstr "Add"
+msgstr "Create post"
 
 #: app/templates/app/addteam.html:18
 msgid "Вам необходимо зайти перед добавлением команды."

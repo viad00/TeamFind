@@ -37,7 +37,7 @@ $('#back-to-top').tooltip('show');
 function ajax(n, e) {
     $.ajax({
         type: "GET",
-        url: "/teamd/?n=" + n + "&e=" + e,
+        url: "/teamd?n=" + n + "&e=" + e,
         success: function (data) {
             $("#nain").append(data);
         }
