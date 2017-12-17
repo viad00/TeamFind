@@ -2,8 +2,6 @@
 # Copyright (C) 2017 Vlad Utkin
 # This file is distributed under the same license as the PACKAGE package.
 # Vlad Utkin <vlad@teamfnd.ru>, 2017.
-#
-#, fuzzy
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
@@ -240,8 +238,6 @@ msgid ""
 msgstr "Welcome to TeamFnd - a service where you can find a team in CS:GO"
 
 #: app/templates/app/index.html:10
-#, fuzzy
-#| msgid "Мои объявления"
 msgid "Смотреть объявления игроков"
 msgstr "Watch players posts"
 
@@ -250,8 +246,6 @@ msgid "Смотреть команды CS:GO"
 msgstr "Watch teams CS:GO"
 
 #: app/templates/app/index.html:13
-#, fuzzy, python-format
-#| msgid "Сейчас на сайте представленно %(count)s команд."
 msgid "Сейчас на сайте представленно %(count)s объявлений."
 msgstr "Site contains %(count)s posts."
 
