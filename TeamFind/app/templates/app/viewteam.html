@@ -10,7 +10,7 @@
             <p>{% trans "Основана" %}: {{ team.founded }}</p>
         </div>
         <div class="col-md-9 panel panel-default panel-body">
-            <p style="font-size: 20px">{{ team.description }}</p>
+            <p style="font-size: 20px">{{ team.description|linebreaks|urlize }}</p>
             <p>Ссылка: <a href="{{ team.team_url }}">{{ team.team_url }}</a></p>
         </div>
     </div>
