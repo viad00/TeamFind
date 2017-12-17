@@ -38,8 +38,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'home' %}">{% trans "Главная" %}</a></li>
+                    <li><a href="{% url 'players' %}">{% trans "Игроки" %}</a></li>
                     <li><a href="{% url 'teams' %}">{% trans "Команды" %}</a></li>
-                    <li><a href="{% url 'players' %}">Игроки</a></li>
                     <li><a href="{% url 'help' %}">FAQ</a></li>
                     <li><a onclick="changeLang('{{ LANGUAGE_CODE }}');" href="">Language</a></li>
                     <script type="application/javascript">

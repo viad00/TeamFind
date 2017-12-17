@@ -29,6 +29,7 @@ def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
     cc = models.Team.objects.count()
+    cc += models.Player.objects.count()
     return render(
         request,
         'app/index.html',

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-13 01:44+0300\n"
+"POT-Creation-Date: 2017-12-17 22:00+0300\n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -190,7 +190,7 @@ msgid "Здесь вы можете добавить команду"
 msgstr "Here you can add team"
 
 #: app/templates/app/addteam.html:10 app/templates/app/teams.html:320
-#: app/views.py:306
+#: app/views.py:328
 msgid "Добавить команду"
 msgstr "Add team"
 
@@ -240,13 +240,20 @@ msgid ""
 msgstr "Welcome to TeamFnd - a service where you can find a team in CS:GO"
 
 #: app/templates/app/index.html:10
+#, fuzzy
+#| msgid "Мои объявления"
+msgid "Смотреть объявления игроков"
+msgstr "Watch players posts"
+
+#: app/templates/app/index.html:11
 msgid "Смотреть команды CS:GO"
 msgstr "Watch teams CS:GO"
 
 #: app/templates/app/index.html:13
-#, python-format
-msgid "Сейчас на сайте представленно %(count)s команд."
-msgstr "Site contains %(count)s commands."
+#, fuzzy, python-format
+#| msgid "Сейчас на сайте представленно %(count)s команд."
+msgid "Сейчас на сайте представленно %(count)s объявлений."
+msgstr "Site contains %(count)s posts."
 
 #: app/templates/app/layout.html:8
 msgid ""
@@ -256,16 +263,20 @@ msgstr ""
 "A site for finding the csgo command on which you can find yourself a command "
 "in cs:go. TeamFind"
 
-#: app/templates/app/layout.html:40 app/views.py:36
+#: app/templates/app/layout.html:40 app/views.py:37
 msgid "Главная"
 msgstr "Home"
 
-#: app/templates/app/layout.html:41 app/templates/app/teams.html:190
+#: app/templates/app/layout.html:41
+msgid "Игроки"
+msgstr "Players"
+
+#: app/templates/app/layout.html:42 app/templates/app/teams.html:190
 msgid "Команды"
 msgstr "Teams"
 
 #: app/templates/app/loginpartial.html:9 app/templates/app/posts.html:18
-#: app/views.py:313
+#: app/views.py:335
 msgid "Мои объявления"
 msgstr "My posts"
 
@@ -276,6 +287,10 @@ msgstr "Logout"
 #: app/templates/app/loginpartial.html:18
 msgid "Войти через SteamID"
 msgstr "Login through SteamID"
+
+#: app/templates/app/players.html:11 app/templates/app/teamsnum.html:29
+msgid "Подробнее"
+msgstr "More"
 
 #: app/templates/app/posts.html:19
 msgid ""
@@ -400,27 +415,33 @@ msgstr "team lead"
 msgid "фрагер"
 msgstr "fragger"
 
-#: app/templates/app/teamsnum.html:29
-msgid "Подробнее"
-msgstr "More"
-
 #: app/templates/app/teamsnum.html:34
 msgid "Больше нет команд"
 msgstr "No more teams"
 
-#: app/views.py:78
+#: app/views.py:79
 msgid "Справка"
 msgstr "Help"
 
-#: app/views.py:218 app/views.py:315
+#: app/views.py:105 app/views.py:337 app/views.py:349 app/views.py:355
+#: app/views.py:367 app/views.py:375 app/views.py:413
+msgid "Ошибка"
+msgstr "Error"
+
+#: app/views.py:106 app/views.py:355 app/views.py:375 app/views.py:414
+msgid ""
+"Такой команды, игрока не существует либо она не принадлежит пользователю."
+msgstr "This object is not exist or have wrong permissions"
+
+#: app/views.py:240 app/views.py:337
 msgid "Не найденно команд или не выполнен вход"
 msgstr "No commands found or login failed"
 
-#: app/views.py:265
+#: app/views.py:287
 msgid "Какое-то слово(а) в вашем описании больше 30 символов."
 msgstr "Some word(s) in your description is more than 30 characters long."
 
-#: app/views.py:268
+#: app/views.py:290
 msgid ""
 "Проверьте формат ссылки на группу в Steam. Например: http://steamcommunity."
 "com/groups/potatogroup"
@@ -428,25 +449,15 @@ msgstr ""
 "Check the format of the link to the group on Steam. For example: http://"
 "steamcommunity.com/groups/potatogroup"
 
-#: app/views.py:271
+#: app/views.py:293
 msgid "В названии или тексте содержатся недопустимые слова "
 msgstr "The title or text contains invalid words"
 
-#: app/views.py:274
+#: app/views.py:296
 msgid "Не более 2-х команд на аккаунт"
 msgstr "You can create not more than 2 teams"
 
-#: app/views.py:315 app/views.py:327 app/views.py:333 app/views.py:345
-#: app/views.py:353 app/views.py:391
-msgid "Ошибка"
-msgstr "Error"
-
-#: app/views.py:328 app/views.py:346
+#: app/views.py:350 app/views.py:368
 msgid ""
 "Такой команды, игрока не существует либо она не принадлежит пользователю"
-msgstr "This object is not exist or have wrong permissions"
-
-#: app/views.py:333 app/views.py:353 app/views.py:392
-msgid ""
-"Такой команды, игрока не существует либо она не принадлежит пользователю."
 msgstr "This object is not exist or have wrong permissions"
