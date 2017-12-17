@@ -88,7 +88,28 @@ def players(request):
         request,
         'app/players.html',
         {
-            'title':'Players',
+            'title': 'Players',
+            'players': models.Player.objects.filter(enabled=True).order_by('-registered'),
+        }
+    )
+
+
+@cache_page(CACHE_TTL)
+@vary_on_cookie
+def viewplayer(request):
+    assert isinstance(request, HttpRequest)
+    try:
+        id = int(request.GET['id'])
+    except Exception:
+        return render(request, 'app/text.html', {'title': _('Ошибка'),
+                                                 'text': _('Такой команды, игрока не существует либо она не принадлежит пользователю.')})
+    player = models.Player.objects.get(id=id)
+    return render(
+        request,
+        'app/viewplayer.html',
+        {
+            'title': player.name,
+            'player': player,
         }
     )
 

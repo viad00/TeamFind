@@ -8,7 +8,8 @@ from app import strings
 
 # Create your models here.
 
-#Описание модели команд
+
+# Описание модели команд
 class Team(models.Model):
     name = models.CharField(max_length=18)
     owner = models.ForeignKey(User, default=None)
@@ -30,6 +31,15 @@ class Team(models.Model):
     need_sup = models.BooleanField(default=True)
     need_frg = models.BooleanField(default=True)
     enabled = models.BooleanField(default=True)
+
+
+class Player(models.Model):
+    name = models.CharField(max_length=100)
+    owner = models.ForeignKey(User, default=None)
+    registered = models.DateTimeField(default=django.utils.timezone.now)
+    description = models.TextField(max_length=5000, default='There are no description yet')
+    enabled = models.BooleanField(default=True)
+
 
 class BadWords(models.Model):
     word = models.CharField(max_length=100)

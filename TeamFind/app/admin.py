@@ -1,5 +1,5 @@
 from django.contrib import admin
-from app.models import Team, BadWords
+from app.models import Team, BadWords, Player
 
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('name', 'adm_url', 'description')
@@ -12,5 +12,10 @@ class BadWordsAdmin(admin.ModelAdmin):
     list_display = ('id', 'word',)
     pass
 
+class PlayerAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+    pass
+
 admin.site.register(Team, TeamAdmin)
 admin.site.register(BadWords, BadWordsAdmin)
+admin.site.register(Player, PlayerAdmin)

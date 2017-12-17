@@ -1,5 +1,15 @@
 {% extends "app/layout.html" %}
-
+{% load i18n %}
 {% block content %}
-    <h2>TODO: This page</h2>
+    <p> </p>
+    <h2>Объявления игроков</h2>
+    {% for player in players %}
+        <div class="panel panel-default panel-body">
+        <h4>{{ player.name }}</h4>
+        <p>{{ player.description|linebreaks|urlize|truncatewords_html:50 }}</p>
+        <p>Date: {{ player.registered }}</p>
+        <a class="btn btn-default" href="/viewplayer?id={{ player.id }}">{% trans "Подробнее" %} &raquo;</a>
+        </div>
+        <p> </p>
+    {% endfor %}
 {% endblock %}
