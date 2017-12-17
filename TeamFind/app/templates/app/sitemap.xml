@@ -14,10 +14,22 @@
        <lastmod>{{ time.isoformat }}</lastmod>
        <changefreq>hourly</changefreq>
    </url>
+    <url>
+      <loc>https://teamfnd.ru/players</loc>
+       <lastmod>{{ time.isoformat }}</lastmod>
+       <changefreq>hourly</changefreq>
+   </url>
     {% for team in teams %}
     <url>
         <loc>https://teamfnd.ru/viewteam?id={{ team.id }}</loc>
         <lastmod>{{ team.registered.isoformat }}</lastmod>
+        <changefreq>weekly</changefreq>
+    </url>
+    {% endfor %}
+    {% for player in players %}
+    <url>
+        <loc>https://teamfnd.ru/viewteam?id={{ player.id }}</loc>
+        <lastmod>{{ player.registered.isoformat }}</lastmod>
         <changefreq>weekly</changefreq>
     </url>
     {% endfor %}

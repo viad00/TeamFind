@@ -399,6 +399,7 @@ def sitemap(request):
         {
             'time': datetime.now(),
             'teams': models.Team.objects.filter(enabled=True),
+            'players': models.Player.objects.filter(enabled=True),
         }
     )
 
