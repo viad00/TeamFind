@@ -17,7 +17,7 @@ class Team(models.Model):
     founded = models.DateField(default=django.utils.timezone.now)
     description = models.TextField(max_length=500, default='There are no description for team yet')
     team_url = models.URLField(default=None)
-    image = models.URLField(default=None)
+    image = models.ImageField(upload_to='', default=None)
     min_rank = models.CharField(max_length=2, choices=strings.RANKS, default='UN')
     max_rank = models.CharField(max_length=2, choices=strings.RANKS, default='GE')
     is_mm = models.BooleanField(default=True)

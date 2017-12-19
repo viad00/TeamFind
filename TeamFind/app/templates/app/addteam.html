@@ -5,8 +5,8 @@
     <h1>{%  trans "Добавление команды" %}</h1>
     <p>{% trans "Здесь вы можете добавить команду" %}</p>
     <div class="jumbotron">
-    {% if user.is_authenticated %}
-        <form role="form" method="post">
+    {% if True %}
+        <form role="form" method="post" enctype="multipart/form-data">
             <legend>{% trans "Добавить команду" %}</legend>
             {% csrf_token %}
             {{ form|bootstrap }}

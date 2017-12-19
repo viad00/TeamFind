@@ -3,7 +3,11 @@
 {% block content %}
     <div style="padding-top: 30px">
         <div class="col-md-3" align="center">
-            <img class="img-rounded" alt="{{ team.name }} image" src="{{ team.image }}" width="180" height="180">
+            {% if team.image != '' %}
+                    <img class="img-rounded" alt="{{ team.name }} image" src="{{ team.image.url }}" width="180" height="180">
+                {% else %}
+                <img class="img-rounded" alt="{{ team.name }} image" src="/static/app/content/noimage.png" width="180" height="180">
+                {% endif %}
         </div>
         <div class="col-md-9" align="center">
             <h3>{{ team.name }}</h3>

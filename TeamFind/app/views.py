@@ -246,7 +246,7 @@ def addteam(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = forms.AddTeamForm(request.POST)
+        form = forms.AddTeamForm(request.POST, request.FILES)
         # check whether it's valid:
         if form.is_valid():
             text = form.cleaned_data['description'].lower()
@@ -262,22 +262,6 @@ def addteam(request):
                     words.append(word.word)
             text = list(map(len, text.split()))
             text.sort(reverse=True)
-            url = urlparse(form.cleaned_data['team_url'])
-            bad = True
-            steamid = 0
-            imgurl = None
-            if url.netloc == 'steamcommunity.com' and url.path[:8] == '/groups/' and url.path.rfind('/') == 7:
-                try:
-                    che = 'https://steamcommunity.com' + url.path + '/memberslistxml/?xml=1'
-                    ans = requests.get(che)
-                    ans = ET.fromstring(ans.content)
-                    steamid = int(ans.find('groupID64').text)
-                    ans = ans.find('groupDetails')
-                    imgurl = ans.find('avatarFull').text
-                    bad = False
-                except Exception:
-                    bad = True
-
             if request.user.username in settings.ADMINS:
                 meme = 0
             else:
@@ -286,7 +270,7 @@ def addteam(request):
             if text[0] > 30:
                 return render(request, 'app/text.html', { 'title':'Ошибка', 'text':_('Какое-то слово(а) в вашем описании'
                                                                          ' больше 30 символов.') })
-            elif bad:
+            elif False: # Не, ну это надо пофиксить
                 return  render(request, 'app/text.html', { 'title':'Ошибка', 'text':_('Проверьте формат ссылки на группу в'
                                                                                     ' Steam. Например: http://steamcommunity.com/groups/potatogroup')})
             elif badword:
@@ -301,8 +285,8 @@ def addteam(request):
                     owner=request.user,
                     founded=form.cleaned_data['founded'],
                     description=form.cleaned_data['description'],
-                    team_url='https://steamcommunity.com/gid/' + str(steamid),
-                    image=imgurl,
+                    team_url=form.cleaned_data['team_url'],
+                    image=form.cleaned_data['img_url'],
                     min_rank=form.cleaned_data['min_rank'],
                     max_rank=form.cleaned_data['max_rank'],
                     is_mm=form.cleaned_data['is_mm'],

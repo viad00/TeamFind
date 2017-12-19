@@ -8,6 +8,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import ugettext_lazy as _
 from captcha.fields import ReCaptchaField
+from django.conf.urls.static import static
 
 class BootstrapAuthenticationForm(AuthenticationForm):
     """Authentication form which uses boostrap CSS."""
@@ -25,6 +26,7 @@ class AddTeamForm(forms.Form):
     team_name = forms.CharField(label=_('Название команды'), max_length=18, required=True)
     description = forms.CharField(widget=forms.Textarea, label=_('Описание команды'), max_length=500, required=True)
     team_url = forms.URLField(label=_('Ссылка на группу в Steam'), required=True)
+    img_url = forms.ImageField(label=_('Изображение'), required=False)
     founded = forms.DateField(label=_('Основана'), required=True, initial=datetime.now())
     min_rank = forms.ChoiceField(choices=strings.RANKS, label=_('Минимальный ранг'), initial='UN')
     max_rank = forms.ChoiceField(choices=strings.RANKS, label=_('Максимальный ранг'), initial='GE')

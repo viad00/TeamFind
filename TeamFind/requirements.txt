@@ -4,3 +4,4 @@ social-auth-app-django
 django-recaptcha
 django-redis
 django-debug-toolbar
+Pillow

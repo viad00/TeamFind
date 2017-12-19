@@ -8,6 +8,7 @@ from django.conf import settings
 from django.conf.urls import url, include
 import django.contrib.auth.views
 from django.shortcuts import redirect
+from django.conf.urls.static import static
 
 import app.forms
 import app.views
@@ -62,7 +63,7 @@ urlpatterns = [
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^code/push', app.code.push),
-    ]
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
