@@ -1,0 +1,15 @@
+{% load i18n %}
+    {% for player in players %}
+        <div class="panel panel-default panel-body">
+        <h4>{{ player.name }}</h4>
+        <p>{{ player.description|linebreaks|urlize|truncatewords_html:50 }}</p>
+        <p>{% trans "Дата" %}: {{ player.registered }}</p>
+        <a class="btn btn-default" href="/viewplayer?id={{ player.id }}">{% trans "Подробнее" %} &raquo;</a>
+        </div>
+        <p> </p>
+    {% empty %}
+    <div class="col-md-12">
+                <div class="panel panel-warning" align="center" id="pls_stp">
+                    <h4>{% trans "Больше нет объявлений" %}</h4>
+                </div></div>
+{% endfor %}

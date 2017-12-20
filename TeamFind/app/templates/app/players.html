@@ -2,14 +2,61 @@
 {% load i18n %}
 {% block content %}
     <p> </p>
-    <h2>Объявления игроков</h2>
-    {% for player in players %}
-        <div class="panel panel-default panel-body">
-        <h4>{{ player.name }}</h4>
-        <p>{{ player.description|linebreaks|urlize|truncatewords_html:50 }}</p>
-        <p>Date: {{ player.registered }}</p>
-        <a class="btn btn-default" href="/viewplayer?id={{ player.id }}">{% trans "Подробнее" %} &raquo;</a>
-        </div>
-        <p> </p>
-    {% endfor %}
+    <h2>{% trans "Объявления игроков" %}</h2>
+    <a class="btn btn-default" href="/addplayer">{% trans "Добавить объявление" %}</a>
+    <p> </p>
+    <div class="row" id="nain"></div>
+    <button class="btn btn-default" onclick="getMore()">{% trans "Загрузить ещё" %}</button>
+    <a id="back-to-top" href="#" class="btn btn-default btn-lg back-to-top" role="button" title="{% trans "Нажмите чтобы перейти к началу страницы" %}" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+var n = 0;
+var step = 9;
+var e = n+step;
+$(document).ready(function(){
+    ajax(n, e);
+    n += step;
+    e += step;
+});
+
+$(window).scroll(function(){
+    if (($(window).scrollTop() == $(document).height() - $(window).height() | $(window).scrollTop() == $(document).height() - $(window).height() - 1000 | $(window).scrollTop() == $(document).height() - $(window).height() - 100) && !$("#pls_stp").length) {
+        ajax(n,e);
+        n += step;
+        e += step;
+     }
+     if ($(this).scrollTop() > 50) {
+         $('#back-to-top').fadeIn();
+     } else {
+         $('#back-to-top').fadeOut();
+     }
+});
+$('#back-to-top').click(function () {
+    $('#back-to-top').tooltip('hide');
+    $('body,html').animate({
+        scrollTop: 0
+    }, 800);
+    return false;
+});
+
+$('#back-to-top').tooltip('show');
+
+function ajax(n, e) {
+    $.ajax({
+        type: "GET",
+        url: "/playerd?n=" + n + "&e=" + e,
+        success: function (data) {
+            $("#nain").append(data);
+        }
+        }
+    );
+}
+
+function getMore() {
+        ajax(n,e);
+        n += step;
+        e += step;
+}
+</script>
 {% endblock %}

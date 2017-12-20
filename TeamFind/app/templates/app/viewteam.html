@@ -16,6 +16,9 @@
         <div class="col-md-9 panel panel-default panel-body">
             <p style="font-size: 20px">{{ team.description|linebreaks|urlize }}</p>
             <p>Ссылка: <a href="{{ team.team_url }}">{{ team.team_url }}</a></p>
+            {% if us_ip == team.owner %}
+                <a href="/delete/?id={{ team.id }}&type=team"><button class="btn btn-danger">{% trans "Удалить" %}</button></a>
+            {% endif %}
         </div>
     </div>
     <p class="col-md-12"> </p>

@@ -24,7 +24,7 @@ class BootstrapAuthenticationForm(AuthenticationForm):
 #Описание формы команд
 class AddTeamForm(forms.Form):
     team_name = forms.CharField(label=_('Название команды'), max_length=18, required=True)
-    description = forms.CharField(widget=forms.Textarea, label=_('Описание команды'), max_length=500, required=True)
+    description = forms.CharField(widget=forms.Textarea, label=_('Описание команды'), max_length=5000, required=True)
     team_url = forms.URLField(label=_('Ссылка на группу в Steam'), required=True)
     img_url = forms.ImageField(label=_('Изображение'), required=False)
     founded = forms.DateField(label=_('Основана'), required=True, initial=datetime.now())
@@ -40,4 +40,14 @@ class AddTeamForm(forms.Form):
     need_igl = forms.BooleanField(label=_('Требуется ') + strings.GAMERS['IGL'], initial=True, required=False)
     need_sup = forms.BooleanField(label=_('Требуется ') + strings.GAMERS['SUP'], initial=True, required=False)
     need_frg = forms.BooleanField(label=_('Требуется ') + strings.GAMERS['FRG'], initial=True, required=False)
+    captcha = ReCaptchaField()
+
+
+# Форма для игроков
+class AddPlayerForm(forms.Form):
+    name = forms.CharField(label=_('Название'), max_length=100, required=True)
+    description = forms.CharField(widget=forms.Textarea({'rows': '20'}), label=_('Описание'),
+                                  max_length=5000, required=True,
+                                  initial='Возраст/Пол: \n\nОпыт игры: \n\nГеографическое положение: \n\nДополнительно:'
+                                          ' \n\nТребования: \n\nКонтакты: \n\n')
     captcha = ReCaptchaField()

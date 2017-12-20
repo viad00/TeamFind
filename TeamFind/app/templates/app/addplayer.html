@@ -1,0 +1,21 @@
+{% extends "app/layout.html" %}
+{% load bootstrap %}
+{% load i18n %}
+{% block content %}
+    <h1>{%  trans "Добавление объявления" %}</h1>
+    <p>{% trans "Здесь вы можете добавить объявление" %}</p>
+    <div class="jumbotron">
+    {% if True %}
+        <form role="form" method="post">
+            <legend>{% trans "Добавить объявление" %}</legend>
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">{% trans "Добавить" %}</button>
+            </div>
+        </form>
+    {% else %}
+    <p>{% trans "Вам необходимо зайти перед добавлением команды." %}</p>
+    {% endif %}
+    </div>
+{% endblock %}

@@ -5,45 +5,57 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-18 01:01+0300\n"
+"POT-Creation-Date: 2017-12-20 18:48+0300\n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: app/forms.py:18
+#: app/forms.py:19
 msgid "Password"
 msgstr "Password"
 
-#: app/forms.py:25
+#: app/forms.py:26
 msgid "Название команды"
 msgstr "Team name"
 
-#: app/forms.py:26
+#: app/forms.py:27
 msgid "Описание команды"
 msgstr "Team description"
 
-#: app/forms.py:27
+#: app/forms.py:28
 msgid "Ссылка на группу в Steam"
 msgstr "Link to Steam Group"
 
-#: app/forms.py:28 app/templates/app/teamsnum.html:9
-#: app/templates/app/viewteam.html:10
+#: app/forms.py:29
+msgid "Изображение"
+msgstr ""
+
+#: app/forms.py:30 app/templates/app/teamsnum.html:13
+#: app/templates/app/viewteam.html:14
 msgid "Основана"
 msgstr "Founded"
 
-#: app/forms.py:29 app/templates/app/teams.html:267
+#: app/forms.py:31 app/templates/app/teams.html:267
 msgid "Минимальный ранг"
 msgstr "Min rank"
 
-#: app/forms.py:30 app/templates/app/teams.html:293
+#: app/forms.py:32 app/templates/app/teams.html:293
 msgid "Максимальный ранг"
 msgstr "Max rank"
 
-#: app/forms.py:35 app/forms.py:36 app/forms.py:37 app/forms.py:38
-#: app/forms.py:39 app/forms.py:40
+#: app/forms.py:37 app/forms.py:38 app/forms.py:39 app/forms.py:40
+#: app/forms.py:41 app/forms.py:42
 msgid "Требуется "
 msgstr "Required "
+
+#: app/forms.py:48 app/templates/app/posts.html:25
+msgid "Название"
+msgstr "Link"
+
+#: app/forms.py:49 app/templates/app/posts.html:42
+msgid "Описание"
+msgstr "Description"
 
 #: app/strings.py:6 app/templates/app/teams.html:270
 #: app/templates/app/teams.html:296
@@ -179,6 +191,27 @@ msgstr "Support"
 msgid "Фрагер"
 msgstr "Fragger"
 
+#: app/templates/app/addplayer.html:5
+msgid "Добавление объявления"
+msgstr "Adding post"
+
+#: app/templates/app/addplayer.html:6
+msgid "Здесь вы можете добавить объявление"
+msgstr "Here you can add post"
+
+#: app/templates/app/addplayer.html:10 app/templates/app/players.html:6
+#: app/views.py:361
+msgid "Добавить объявление"
+msgstr "Add post"
+
+#: app/templates/app/addplayer.html:14 app/templates/app/addteam.html:14
+msgid "Добавить"
+msgstr "Create post"
+
+#: app/templates/app/addplayer.html:18 app/templates/app/addteam.html:18
+msgid "Вам необходимо зайти перед добавлением команды."
+msgstr "You need to login before add command."
+
 #: app/templates/app/addteam.html:5
 msgid "Добавление команды"
 msgstr "Team add"
@@ -188,17 +221,9 @@ msgid "Здесь вы можете добавить команду"
 msgstr "Here you can add team"
 
 #: app/templates/app/addteam.html:10 app/templates/app/teams.html:320
-#: app/views.py:328
+#: app/views.py:329
 msgid "Добавить команду"
 msgstr "Add team"
-
-#: app/templates/app/addteam.html:14
-msgid "Добавить"
-msgstr "Create post"
-
-#: app/templates/app/addteam.html:18
-msgid "Вам необходимо зайти перед добавлением команды."
-msgstr "You need to login before add command."
 
 #: app/templates/app/help.html:7
 msgid ""
@@ -238,14 +263,15 @@ msgid ""
 msgstr "Welcome to TeamFnd - a service where you can find a team in CS:GO"
 
 #: app/templates/app/index.html:10
-msgid "Смотреть объявления игроков"
-msgstr "Watch players posts"
+msgid "Смотреть объявления игроков CS:GO"
+msgstr "Watch CS:GO players posts"
 
-#: app/templates/app/index.html:11
+#: app/templates/app/index.html:12
 msgid "Смотреть команды CS:GO"
 msgstr "Watch teams CS:GO"
 
-#: app/templates/app/index.html:13
+#: app/templates/app/index.html:14
+#, python-format
 msgid "Сейчас на сайте представленно %(count)s объявлений."
 msgstr "Site contains %(count)s posts."
 
@@ -270,7 +296,7 @@ msgid "Команды"
 msgstr "Teams"
 
 #: app/templates/app/loginpartial.html:9 app/templates/app/posts.html:18
-#: app/views.py:335
+#: app/views.py:368
 msgid "Мои объявления"
 msgstr "My posts"
 
@@ -282,9 +308,29 @@ msgstr "Logout"
 msgid "Войти через SteamID"
 msgstr "Login through SteamID"
 
-#: app/templates/app/players.html:11 app/templates/app/teamsnum.html:29
+#: app/templates/app/players.html:5
+msgid "Объявления игроков"
+msgstr "Players posts"
+
+#: app/templates/app/players.html:9 app/templates/app/teams.html:324
+msgid "Загрузить ещё"
+msgstr "Get more"
+
+#: app/templates/app/players.html:10 app/templates/app/teams.html:325
+msgid "Нажмите чтобы перейти к началу страницы"
+msgstr "Click to go to the top of the page"
+
+#: app/templates/app/playersnum.html:6 app/templates/app/viewplayer.html:8
+msgid "Дата"
+msgstr "Date"
+
+#: app/templates/app/playersnum.html:7 app/templates/app/teamsnum.html:33
 msgid "Подробнее"
 msgstr "More"
+
+#: app/templates/app/playersnum.html:13
+msgid "Больше нет объявлений"
+msgstr "No more posts"
 
 #: app/templates/app/posts.html:19
 msgid ""
@@ -293,10 +339,6 @@ msgid ""
 msgstr ""
 "Warning: Created posts are deleted after 30 days .You can extend thepost "
 "delete time by clicking on the renew button."
-
-#: app/templates/app/posts.html:25
-msgid "Название"
-msgstr "Link"
 
 #: app/templates/app/posts.html:26
 msgid "Ссылка"
@@ -310,17 +352,14 @@ msgstr "Updated"
 msgid "Действия"
 msgstr "Actions"
 
-#: app/templates/app/posts.html:40
+#: app/templates/app/posts.html:40 app/templates/app/viewplayer.html:10
+#: app/templates/app/viewteam.html:20
 msgid "Удалить"
 msgstr "Delete"
 
 #: app/templates/app/posts.html:41
 msgid "Продлить"
 msgstr "Renew"
-
-#: app/templates/app/posts.html:42
-msgid "Описание"
-msgstr "Description"
 
 #: app/templates/app/posts.html:43
 msgid "Скрыть"
@@ -369,47 +408,39 @@ msgstr "Submit"
 msgid "Сброс"
 msgstr "Reset"
 
-#: app/templates/app/teams.html:324
-msgid "Загрузить ещё"
-msgstr "Get more"
-
-#: app/templates/app/teams.html:325
-msgid "Нажмите чтобы перейти к началу страницы"
-msgstr "Click to go to the top of the page"
-
-#: app/templates/app/teamsnum.html:12
+#: app/templates/app/teamsnum.html:16
 msgid "От"
 msgstr "From"
 
-#: app/templates/app/teamsnum.html:14
+#: app/templates/app/teamsnum.html:18
 msgid "До"
 msgstr "To"
 
-#: app/templates/app/teamsnum.html:22
+#: app/templates/app/teamsnum.html:26
 msgid "авапер"
 msgstr "AWP"
 
-#: app/templates/app/teamsnum.html:23
+#: app/templates/app/teamsnum.html:27
 msgid "люрк"
 msgstr "lurk"
 
-#: app/templates/app/teamsnum.html:24
+#: app/templates/app/teamsnum.html:28
 msgid "рифлер"
 msgstr "rifler"
 
-#: app/templates/app/teamsnum.html:25
+#: app/templates/app/teamsnum.html:29
 msgid "саппорт"
 msgstr "support"
 
-#: app/templates/app/teamsnum.html:26
+#: app/templates/app/teamsnum.html:30
 msgid "капитан"
 msgstr "team lead"
 
-#: app/templates/app/teamsnum.html:27
+#: app/templates/app/teamsnum.html:31
 msgid "фрагер"
 msgstr "fragger"
 
-#: app/templates/app/teamsnum.html:34
+#: app/templates/app/teamsnum.html:38
 msgid "Больше нет команд"
 msgstr "No more teams"
 
@@ -417,25 +448,25 @@ msgstr "No more teams"
 msgid "Справка"
 msgstr "Help"
 
-#: app/views.py:105 app/views.py:337 app/views.py:349 app/views.py:355
-#: app/views.py:367 app/views.py:375 app/views.py:414
+#: app/views.py:125 app/views.py:370 app/views.py:382 app/views.py:388
+#: app/views.py:400 app/views.py:408 app/views.py:447
 msgid "Ошибка"
 msgstr "Error"
 
-#: app/views.py:106 app/views.py:355 app/views.py:375 app/views.py:415
+#: app/views.py:126 app/views.py:388 app/views.py:408 app/views.py:448
 msgid ""
 "Такой команды, игрока не существует либо она не принадлежит пользователю."
 msgstr "This object is not exist or have wrong permissions"
 
-#: app/views.py:240 app/views.py:337
+#: app/views.py:261 app/views.py:370
 msgid "Не найденно команд или не выполнен вход"
 msgstr "No commands found or login failed"
 
-#: app/views.py:287
+#: app/views.py:288
 msgid "Какое-то слово(а) в вашем описании больше 30 символов."
 msgstr "Some word(s) in your description is more than 30 characters long."
 
-#: app/views.py:290
+#: app/views.py:291
 msgid ""
 "Проверьте формат ссылки на группу в Steam. Например: http://steamcommunity."
 "com/groups/potatogroup"
@@ -443,15 +474,15 @@ msgstr ""
 "Check the format of the link to the group on Steam. For example: http://"
 "steamcommunity.com/groups/potatogroup"
 
-#: app/views.py:293
+#: app/views.py:294 app/views.py:351
 msgid "В названии или тексте содержатся недопустимые слова "
 msgstr "The title or text contains invalid words"
 
-#: app/views.py:296
+#: app/views.py:297
 msgid "Не более 2-х команд на аккаунт"
 msgstr "You can create not more than 2 teams"
 
-#: app/views.py:350 app/views.py:368
+#: app/views.py:383 app/views.py:401
 msgid ""
 "Такой команды, игрока не существует либо она не принадлежит пользователю"
 msgstr "This object is not exist or have wrong permissions"

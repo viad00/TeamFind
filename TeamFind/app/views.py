@@ -90,7 +90,27 @@ def players(request):
         'app/players.html',
         {
             'title': 'Players',
-            'players': models.Player.objects.filter(enabled=True).order_by('-registered'),
+        }
+    )
+
+
+# Player model enumerate
+def playerd(request):
+    assert isinstance(request, HttpRequest)
+    try:
+        n = int(request.GET['n'])
+        e = int(request.GET['e'])
+    except Exception:
+        n = 0
+        e = 20
+    if e-n > 50 or e-n < 3:
+        n=0
+        e=20
+    return render(
+        request,
+        'app/playersnum.html',
+        {
+            'players': models.Player.objects.filter(enabled=True).order_by('-registered')[n:e],
         }
     )
 
@@ -111,6 +131,7 @@ def viewplayer(request):
         {
             'title': player.name,
             'player': player,
+            'us_ip': request.META.get('REMOTE_ADDR'),
         }
     )
 
@@ -262,10 +283,6 @@ def addteam(request):
                     words.append(word.word)
             text = list(map(len, text.split()))
             text.sort(reverse=True)
-            if request.user.username in settings.ADMINS:
-                meme = 0
-            else:
-                meme = models.Team.objects.filter(owner=request.user).count()
 
             if text[0] > 30:
                 return render(request, 'app/text.html', { 'title':'Ошибка', 'text':_('Какое-то слово(а) в вашем описании'
@@ -276,13 +293,13 @@ def addteam(request):
             elif badword:
                 return render(request, 'app/text.html', { 'title':'Ошибка', 'text':_('В названии или тексте содержатся недопустимые слова ') + str(words) })
 
-            elif meme >= 2:
+            elif False: # Ну прям совсем позор
                 return render(request, 'app/text.html', { 'title':'Ошибка', 'text':_('Не более 2-х команд на аккаунт')})
             else:
             # process the data in form.cleaned_data as required
                 tm = models.Team(
                     name=form.cleaned_data['team_name'],
-                    owner=request.user,
+                    owner=request.META.get('REMOTE_ADDR'),
                     founded=form.cleaned_data['founded'],
                     description=form.cleaned_data['description'],
                     team_url=form.cleaned_data['team_url'],
@@ -312,6 +329,38 @@ def addteam(request):
     return render(request, 'app/addteam.html', {'title':_('Добавить команду'), 'form': form})
 
 
+# AddPlayer View
+def add_player(request):
+    if request.method == 'POST':
+        form = forms.AddPlayerForm(request.POST)
+        if form.is_valid():
+            text = form.cleaned_data['description'].lower()
+            name = form.cleaned_data['name'].lower()
+            badword = False
+            words = []
+            for word in models.BadWords.objects.all():
+                if word.word in text:
+                    badword = True
+                    words.append(word.word)
+                elif word.word in name:
+                    badword = True
+                    words.append(word.word)
+            text = list(map(len, text.split()))
+            text.sort(reverse=True)
+            if badword:
+                return render(request, 'app/text.html', { 'title':'Ошибка', 'text':_('В названии или тексте содержатся недопустимые слова ') + str(words) })
+            tm = models.Player(
+                name=form.cleaned_data['name'],
+                owner=request.META.get('REMOTE_ADDR'),
+                description=form.cleaned_data['description'],
+            )
+            tm.save()
+            return HttpResponseRedirect('/players')
+    else:
+        form = forms.AddPlayerForm
+    return render(request, 'app/addplayer.html', {'title':_('Добавить объявление'), 'form': form})
+
+
 #ЛК
 def myposts(request):
     try:
@@ -326,15 +375,15 @@ def delete(request):
         id = int(request.GET['id'])
         type = request.GET['type']
         if type == 'team':
-            mod = models.Team.objects.filter(id=id, owner=request.user)
+            mod = models.Team.objects.filter(id=id, owner=request.META.get('REMOTE_ADDR'))
         elif type == 'player': #TODO: Player model
-            mod = models.Team.objects.filter(id=id, owner=request.user)
+            mod = models.Player.objects.filter(id=id, owner=request.META.get('REMOTE_ADDR'))
         else:
             return render(request, 'app/text.html', {'title': _('Ошибка'),
                                                      'text': _('Такой команды, игрока не существует либо она не принадлежит пользователю')})
         for i in mod:
             i.delete()
-        return redirect('/myposts')
+        return redirect('/'+type+'s')
     except Exception:
         return render(request, 'app/text.html', {'title':_('Ошибка'), 'text':_('Такой команды, игрока не существует либо она не принадлежит пользователю.')})
 
@@ -404,6 +453,7 @@ def viewteam(request):
         {
             'title': team.name,
             'team': team,
+            'us_ip': request.META.get('REMOTE_ADDR'),
             'is_mm': strings.TYPES['MM'],
             'is_pu': strings.TYPES['PU'],
             'is_le': strings.TYPES['LE'],

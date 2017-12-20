@@ -5,6 +5,9 @@
         <div class="panel panel-default panel-body">
         <h4>{{ player.name }}</h4>
         <p>{{ player.description|linebreaks|urlize }}</p>
-        <p>Date: {{ player.registered }}</p>
+        <p>{% trans "Дата" %}: {{ player.registered }}</p>
+        {% if us_ip == player.owner %}
+        <a href="/delete/?id={{ player.id }}&type=player"><button class="btn btn-danger">{% trans "Удалить" %}</button></a>
+        {% endif %}
         </div>
 {% endblock %}

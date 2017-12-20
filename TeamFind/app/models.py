@@ -12,10 +12,10 @@ from app import strings
 # Описание модели команд
 class Team(models.Model):
     name = models.CharField(max_length=18)
-    owner = models.ForeignKey(User, default=None)
+    owner = models.GenericIPAddressField()
     registered = models.DateTimeField(default=django.utils.timezone.now)
     founded = models.DateField(default=django.utils.timezone.now)
-    description = models.TextField(max_length=500, default='There are no description for team yet')
+    description = models.TextField(max_length=5000, default='There are no description for team yet')
     team_url = models.URLField(default=None)
     image = models.ImageField(upload_to='', default=None)
     min_rank = models.CharField(max_length=2, choices=strings.RANKS, default='UN')
@@ -35,7 +35,7 @@ class Team(models.Model):
 
 class Player(models.Model):
     name = models.CharField(max_length=100)
-    owner = models.ForeignKey(User, default=None)
+    owner = models.GenericIPAddressField()
     registered = models.DateTimeField(default=django.utils.timezone.now)
     description = models.TextField(max_length=5000, default='There are no description yet')
     enabled = models.BooleanField(default=True)

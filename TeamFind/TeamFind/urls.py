@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^about', app.views.about, name='about'),
     url(r'^players', app.views.players, name='players'),
+    url(r'^playerd', app.views.playerd, name='playerd'),
     url(r'^teams', app.views.teams, name='teams'),
     url(r'^teamd', app.views.teamd, name='teamd'),
     url(r'^updateinfo', app.views.updateinfo, name='updateinfo'),
@@ -49,6 +50,7 @@ urlpatterns = [
         },
         name='login'),
     url(r'^addteam', app.views.addteam),
+    url(r'^addplayer', app.views.add_player),
     url(r'^logout$',
         django.contrib.auth.views.logout,
         {
