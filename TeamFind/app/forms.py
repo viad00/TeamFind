@@ -25,7 +25,7 @@ class BootstrapAuthenticationForm(AuthenticationForm):
 class AddTeamForm(forms.Form):
     team_name = forms.CharField(label=_('Название команды'), max_length=18, required=True)
     description = forms.CharField(widget=forms.Textarea, label=_('Описание команды'), max_length=5000, required=True)
-    team_url = forms.URLField(label=_('Ссылка на группу в Steam'), required=True)
+    team_url = forms.URLField(label=_('Ссылка'), required=True)
     img_url = forms.ImageField(label=_('Изображение'), required=False)
     founded = forms.DateField(label=_('Основана'), required=True, initial=datetime.now())
     min_rank = forms.ChoiceField(choices=strings.RANKS, label=_('Минимальный ранг'), initial='UN')
