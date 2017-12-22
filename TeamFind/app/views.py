@@ -19,6 +19,7 @@ from django.utils.datetime_safe import datetime
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_cookie
 from django.utils.translation import ugettext as _
+from django.utils import translation
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
@@ -28,6 +29,9 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
+    if 'Googlebot' in request.META['HTTP_USER_AGENT']:
+        translation.activate('ru')
+        request.session[translation.LANGUAGE_SESSION_KEY] = 'ru'
     cc = models.Team.objects.count()
     cc += models.Player.objects.count()
     return render(
