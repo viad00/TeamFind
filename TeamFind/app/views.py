@@ -125,10 +125,11 @@ def viewplayer(request):
     assert isinstance(request, HttpRequest)
     try:
         id = int(request.GET['id'])
+        player = models.Player.objects.get(id=id)
     except Exception:
         return render(request, 'app/text.html', {'title': _('Ошибка'),
-                                                 'text': _('Такой команды, игрока не существует либо она не принадлежит пользователю.')})
-    player = models.Player.objects.get(id=id)
+                                                 'text': _('Такой команды, игрока не существует либо она не принадлежит пользователю.')},
+                      status=404)
     return render(
         request,
         'app/viewplayer.html',
@@ -447,10 +448,11 @@ def viewteam(request):
     assert isinstance(request, HttpRequest)
     try:
         id = int(request.GET['id'])
+        team = models.Team.objects.get(id=id)
     except Exception:
         return render(request, 'app/text.html', {'title': _('Ошибка'),
-                                                 'text': _('Такой команды, игрока не существует либо она не принадлежит пользователю.')})
-    team = models.Team.objects.get(id=id)
+                                                 'text': _('Такой команды, игрока не существует либо она не принадлежит пользователю.')},
+                      status=404)
     return render(
         request,
         'app/viewteam.html',

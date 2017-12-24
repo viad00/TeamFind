@@ -28,7 +28,7 @@
     {% endfor %}
     {% for player in players %}
     <url>
-        <loc>https://teamfnd.ru/viewteam?id={{ player.id }}</loc>
+        <loc>https://teamfnd.ru/viewplayer?id={{ player.id }}</loc>
         <lastmod>{{ player.registered.isoformat }}</lastmod>
         <changefreq>weekly</changefreq>
     </url>
