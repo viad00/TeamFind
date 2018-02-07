@@ -5,7 +5,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if team %}
+        <meta name="description" content="{{ team.description|striptags|truncatechars:120 }}" />
+    {% elif player %}
+        <meta name="description" content="{{ player.description|striptags|truncatechars:120 }}" />
+    {% else %}
     <meta name="description" content="{% trans "Сайт для поиска команды csgo на котором вы можете найти себе команду в cs:go. TeamFind" %}" />
+    {% endif %}
     <meta name="keywords" content="поиск, команды, csgo, cs go, cs:go, найти, команду, Team, Find, TeamFind" />
     <title>{{ title }} - TeamFnd</title>
     {% load staticfiles %}
