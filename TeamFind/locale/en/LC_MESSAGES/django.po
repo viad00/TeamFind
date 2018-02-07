@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-21 18:16+0300\n"
+"POT-Creation-Date: 2018-02-07 20:06+0300\n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -200,7 +200,7 @@ msgid "Здесь вы можете добавить объявление"
 msgstr "Here you can add post"
 
 #: app/templates/app/addplayer.html:10 app/templates/app/players.html:6
-#: app/views.py:361
+#: app/views.py:366
 msgid "Добавить объявление"
 msgstr "Add post"
 
@@ -221,40 +221,54 @@ msgid "Здесь вы можете добавить команду"
 msgstr "Here you can add team"
 
 #: app/templates/app/addteam.html:10 app/templates/app/teams.html:320
-#: app/views.py:329
+#: app/views.py:334
 msgid "Добавить команду"
 msgstr "Add team"
 
 #: app/templates/app/help.html:7
 msgid ""
 "\n"
-"    <h1>FAQ</h1>\n"
-"    <h4>Как мне добавить команду ?</h4>\n"
-"    <p class=\"lead\">Вы можите добавить команду <a href=\"/addteam\">здесь</"
-"a>. Для этого вам надо зайти через SteamID.</p>\n"
-"    <h4>Как долго моё объявление будет на сайте ?</h4>\n"
-"    <p class=\"lead\">Не продлённые объявления автоматически удаляются через "
-"1 месяц. Вы можите продлить объявление в\n"
-"        разделе <a href=\"/myposts\">Мои объявления</a>.</p>\n"
-"    <h4>Безопасно ли входить через SteamID ?</h4>\n"
-"    <p class=\"lead\">Да это абсолютно безопасно. Авторизация проходит "
-"полностью на сайте Steam и вы можете быть уверены\n"
-"        что ваш аккаунт не украдут.</p>\n"
+"        <h1>FAQ</h1>\n"
+"        <h4>Как мне добавить команду ?</h4>\n"
+"        <p class=\"lead\">Вы можете добавить команду <a href=\"/addteam"
+"\">здесь</a>.\n"
+"            Для этого вам надо просто заполнить форму.</p>\n"
+"        <h4>Как писать объявление?</h4>\n"
+"        <p class=\"lead\">Это вы должны решить сами. Если совсем нет идей то "
+"посмотрите уже имеющиеся.<br />\n"
+"            В основном, старайтесь писать таким образом, чтобы Вас было "
+"приятно читать,\n"
+"            избегайте транслита, обильного количества мата, и прочей "
+"нецензурщины.<br />\n"
+"            Обратите Ваше внимание: Вы оставляете свои контактные данные в "
+"открытом виде,\n"
+"            эти данные индексируются поисковыми роботами. Если Вы не "
+"согласны на индексацию\n"
+"            вашей заявки, не добавляйте её на сайт.</p>\n"
+"        <h4>Как долго моё объявление будет на сайте ?</h4>\n"
+"        <p class=\"lead\">Непродлённые объявления автоматически удаляются "
+"через, как минимум, 1 месяц.\n"
+"            После этого срока вы можете подать объявление заново.</p>\n"
 "    "
 msgstr ""
 "\n"
-"<h1>FAQ</h1>\n"
-"<h4>How do I add a command?</h4>\n"
-"<p class=\"lead\">You can add the <a href=\"/addteam\">command here</a>. For "
-"this you need to log in through SteamID.</p>\n"
-"<h4>How long will my post be on the site?</h4>\n"
-"<p class=\"lead\">Non-renewed post are automatically deleted after1 month. "
-"You can renew post in\n"
-"section <a href=\"/myposts\">My Posts</a>.</p>\n"
-"<h4>Is it safe to log in via SteamID?</h4>\n"
-"<p class=\"lead\">Yes it's completely safe. Authorization passescompletely "
-"on the Steam site and you can be sure\n"
-"that your account will not be stolen.</p>\n"
+"        <h1>FAQ</h1>\n"
+"        <h4>How can I add post ?</h4>\n"
+"        <p class=\"lead\">You can add post <a href=\"/addteam"
+"\">there</a>.\n"
+"            Just fill form provided.</p>\n"
+"        <h4>How to write post?</h4>\n"
+"        <p class=\"lead\">Protip: You have to do it yourself. If you have no idea, "
+"try to look at others posts.<br />\n"
+"            Generally, try to write "
+"clear,\n"
+"            avoid rude words and etc."
+"<br />\n"
+"            Remember: By leaving your personal data "
+"on this site,\n"
+"            you are agreeing to index this data by search engines. If you don't "
+"want your data being indexed\n"
+"            , don't post it on site.</p>\n"
 "    "
 
 #: app/templates/app/index.html:8
@@ -270,6 +284,20 @@ msgstr "Watch CS:GO players posts"
 msgid "Смотреть команды CS:GO"
 msgstr "Watch teams CS:GO"
 
+#: app/templates/app/index.html:14
+#, fuzzy
+#| msgid "Здесь вы можете добавить объявление"
+msgid "Также вы можете добавить объявление. Для этого просто заполните форму:"
+msgstr "Here you can add post"
+
+#: app/templates/app/index.html:15
+msgid "Подать объявление о поиске команды"
+msgstr "Add player's post"
+
+#: app/templates/app/index.html:17
+msgid "Подать объявление о поиске игроков"
+msgstr "Add team's post"
+
 #: app/templates/app/layout.html:8
 msgid ""
 "Сайт для поиска команды csgo на котором вы можете найти себе команду в cs:"
@@ -278,7 +306,7 @@ msgstr ""
 "A site for finding the csgo command on which you can find yourself a command "
 "in cs:go. TeamFind"
 
-#: app/templates/app/layout.html:40 app/views.py:37
+#: app/templates/app/layout.html:40 app/views.py:41
 msgid "Главная"
 msgstr "Home"
 
@@ -291,7 +319,7 @@ msgid "Команды"
 msgstr "Teams"
 
 #: app/templates/app/loginpartial.html:9 app/templates/app/posts.html:18
-#: app/views.py:368
+#: app/views.py:373
 msgid "Мои объявления"
 msgstr "My posts"
 
@@ -435,29 +463,29 @@ msgstr "fragger"
 msgid "Больше нет команд"
 msgstr "No more teams"
 
-#: app/views.py:79
+#: app/views.py:83
 msgid "Справка"
 msgstr "Help"
 
-#: app/views.py:125 app/views.py:370 app/views.py:382 app/views.py:388
-#: app/views.py:400 app/views.py:408 app/views.py:447
+#: app/views.py:130 app/views.py:375 app/views.py:387 app/views.py:393
+#: app/views.py:405 app/views.py:413 app/views.py:453
 msgid "Ошибка"
 msgstr "Error"
 
-#: app/views.py:126 app/views.py:388 app/views.py:408 app/views.py:448
+#: app/views.py:131 app/views.py:393 app/views.py:413 app/views.py:454
 msgid ""
 "Такой команды, игрока не существует либо она не принадлежит пользователю."
 msgstr "This object is not exist or have wrong permissions"
 
-#: app/views.py:261 app/views.py:370
+#: app/views.py:266 app/views.py:375
 msgid "Не найденно команд или не выполнен вход"
 msgstr "No commands found or login failed"
 
-#: app/views.py:288
+#: app/views.py:293
 msgid "Какое-то слово(а) в вашем описании больше 30 символов."
 msgstr "Some word(s) in your description is more than 30 characters long."
 
-#: app/views.py:291
+#: app/views.py:296
 msgid ""
 "Проверьте формат ссылки на группу в Steam. Например: http://steamcommunity."
 "com/groups/potatogroup"
@@ -465,15 +493,15 @@ msgstr ""
 "Check the format of the link to the group on Steam. For example: http://"
 "steamcommunity.com/groups/potatogroup"
 
-#: app/views.py:294 app/views.py:351
+#: app/views.py:299 app/views.py:356
 msgid "В названии или тексте содержатся недопустимые слова "
 msgstr "The title or text contains invalid words"
 
-#: app/views.py:297
+#: app/views.py:302
 msgid "Не более 2-х команд на аккаунт"
 msgstr "You can create not more than 2 teams"
 
-#: app/views.py:383 app/views.py:401
+#: app/views.py:388 app/views.py:406
 msgid ""
 "Такой команды, игрока не существует либо она не принадлежит пользователю"
 msgstr "This object is not exist or have wrong permissions"
