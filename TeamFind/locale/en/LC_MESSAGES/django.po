@@ -285,10 +285,8 @@ msgid "Смотреть команды CS:GO"
 msgstr "Watch teams CS:GO"
 
 #: app/templates/app/index.html:14
-#, fuzzy
-#| msgid "Здесь вы можете добавить объявление"
 msgid "Также вы можете добавить объявление. Для этого просто заполните форму:"
-msgstr "Here you can add post"
+msgstr "Also you can add post, just fill the form provided below."
 
 #: app/templates/app/index.html:15
 msgid "Подать объявление о поиске команды"
